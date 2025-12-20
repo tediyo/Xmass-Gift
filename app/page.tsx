@@ -4,7 +4,6 @@ import { useState } from 'react'
 import GiftCardForm from '@/components/GiftCardForm'
 import GiftCardPreview from '@/components/GiftCardPreview'
 import Snowflakes from '@/components/Snowflakes'
-import Decorations from '@/components/Decorations'
 import ChristmasCountdown from '@/components/ChristmasCountdown'
 import GreetingGenerator from '@/components/GreetingGenerator'
 import DigitalCardCreator from '@/components/DigitalCardCreator'
@@ -32,29 +31,29 @@ export default function Home() {
   }
 
   const tabs = [
-    { id: 'giftcard' as TabType, label: '🎁 Gift Card', emoji: '🎁' },
-    { id: 'countdown' as TabType, label: '⏰ Countdown', emoji: '⏰' },
-    { id: 'greeting' as TabType, label: '💌 Greeting', emoji: '💌' },
-    { id: 'digitalcard' as TabType, label: '🎨 Digital Card', emoji: '🎨' },
+    { id: 'giftcard' as TabType, label: 'Gift Card' },
+    { id: 'countdown' as TabType, label: 'Countdown' },
+    { id: 'greeting' as TabType, label: 'Greeting' },
+    { id: 'digitalcard' as TabType, label: 'Digital Card' },
   ]
 
   return (
-    <main className="min-h-screen relative overflow-hidden">
+    <main className="min-h-screen relative overflow-hidden bg-snow-white">
       <Snowflakes />
-      <Decorations />
       
-      <div className="relative z-10 container mx-auto px-4 py-8 md:py-12">
-        <div className="text-center mb-8 md:mb-12">
-          <h1 className="text-5xl md:text-8xl font-bold mb-4 glow text-christmas-gold">
-            🎄 Merry Christmas 🎄
+      <div className="relative z-10 container mx-auto px-4 py-12 md:py-16">
+        {/* Hero Section */}
+        <div className="text-center mb-12 md:mb-16 fade-in">
+          <h1 className="text-5xl md:text-7xl font-playfair font-bold mb-6 text-secondary-green">
+            Merry Christmas
           </h1>
-          <p className="text-xl md:text-3xl text-white font-light">
-            Your Complete Christmas Experience
+          <p className="text-xl md:text-2xl text-secondary-green/70 font-inter font-light max-w-2xl mx-auto">
+            Create beautiful, personalized holiday experiences
           </p>
         </div>
 
         {/* Navigation Tabs */}
-        <div className="flex flex-wrap justify-center gap-3 md:gap-4 mb-8 md:mb-12">
+        <div className="flex flex-wrap justify-center gap-3 md:gap-4 mb-12 md:mb-16">
           {tabs.map((tab) => (
             <button
               key={tab.id}
@@ -62,19 +61,19 @@ export default function Home() {
                 setActiveTab(tab.id)
                 setShowPreview(false)
               }}
-              className={`px-6 md:px-8 py-3 md:py-4 rounded-xl font-bold text-lg md:text-xl transition-all duration-300 transform hover:scale-110 ${
+              className={`px-6 md:px-8 py-3 rounded-full font-inter text-base md:text-lg transition-all duration-300 ${
                 activeTab === tab.id
-                  ? 'bg-christmas-gold text-red-900 border-4 border-white shadow-2xl scale-105'
-                  : 'bg-white/20 text-white border-2 border-christmas-gold hover:bg-white/30'
+                  ? 'bg-primary-red text-white shadow-soft-lg'
+                  : 'bg-white text-secondary-green border-2 border-secondary-green/20 hover:border-secondary-green/40 hover-lift'
               }`}
             >
-              {tab.emoji} {tab.label}
+              {tab.label}
             </button>
           ))}
         </div>
 
         {/* Content Area */}
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-4xl mx-auto fade-in">
           {activeTab === 'giftcard' && (
             <>
               {!showPreview ? (

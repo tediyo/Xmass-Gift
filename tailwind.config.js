@@ -8,28 +8,32 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'christmas-red': '#DC143C',
-        'christmas-green': '#228B22',
-        'christmas-gold': '#FFD700',
+        'primary-red': '#B11226',
+        'secondary-green': '#0F3D2E',
+        'snow-white': '#F9FAF7',
+        'accent-gold': '#E6B65C',
+      },
+      fontFamily: {
+        'playfair': ['var(--font-playfair)', 'serif'],
+        'inter': ['var(--font-inter)', 'sans-serif'],
       },
       animation: {
-        'float': 'float 3s ease-in-out infinite',
-        'snow': 'snow 10s linear infinite',
-        'twinkle': 'twinkle 2s ease-in-out infinite',
+        'fade-in': 'fadeIn 0.6s ease-out',
+        'gentle-float': 'gentleFloat 4s ease-in-out infinite',
       },
       keyframes: {
-        float: {
+        fadeIn: {
+          '0%': { opacity: '0', transform: 'translateY(20px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        gentleFloat: {
           '0%, 100%': { transform: 'translateY(0px)' },
-          '50%': { transform: 'translateY(-20px)' },
+          '50%': { transform: 'translateY(-10px)' },
         },
-        snow: {
-          '0%': { transform: 'translateY(-100vh) rotate(0deg)' },
-          '100%': { transform: 'translateY(100vh) rotate(360deg)' },
-        },
-        twinkle: {
-          '0%, 100%': { opacity: 1 },
-          '50%': { opacity: 0.3 },
-        },
+      },
+      boxShadow: {
+        'soft': '0 4px 16px rgba(0, 0, 0, 0.08)',
+        'soft-lg': '0 8px 24px rgba(0, 0, 0, 0.12)',
       },
     },
   },

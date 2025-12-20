@@ -15,89 +15,67 @@ interface GiftCardPreviewProps {
 export default function GiftCardPreview({ data, onBack }: GiftCardPreviewProps) {
   const cardRef = useRef<HTMLDivElement>(null)
 
-  const handleDownload = () => {
-    if (!cardRef.current) return
-    
-    // Create a canvas to capture the card
-    const canvas = document.createElement('canvas')
-    const ctx = canvas.getContext('2d')
-    if (!ctx) return
-
-    const card = cardRef.current
-    canvas.width = card.offsetWidth
-    canvas.height = card.offsetHeight
-
-    // Use html2canvas if available, otherwise just print
-    window.print()
-  }
-
   const handlePrint = () => {
     window.print()
   }
 
   return (
-    <div className="max-w-2xl mx-auto">
+    <div className="max-w-2xl mx-auto fade-in">
       <div className="mb-6 flex gap-4 justify-center">
         <button
           onClick={onBack}
-          className="px-6 py-3 bg-white/20 backdrop-blur-sm text-white font-semibold rounded-lg border-2 border-christmas-gold hover:bg-white/30 transition-all"
+          className="px-6 py-3 bg-white text-secondary-green font-inter font-semibold rounded-lg border-2 border-secondary-green/20 hover:border-secondary-green/40 hover-lift transition-all"
         >
           ← Edit Card
         </button>
         <button
           onClick={handlePrint}
-          className="px-6 py-3 bg-gradient-to-r from-christmas-red to-christmas-green text-white font-semibold rounded-lg border-2 border-christmas-gold hover:shadow-lg transition-all"
+          className="px-6 py-3 bg-primary-red text-white font-inter font-semibold rounded-lg shadow-soft hover-lift transition-all"
         >
-          🖨️ Print Card
+          Print Card
         </button>
       </div>
 
       <div
         ref={cardRef}
-        className="bg-gradient-to-br from-red-50 via-white to-green-50 rounded-3xl shadow-2xl p-12 border-8 border-christmas-gold relative overflow-hidden print:shadow-none print:border-4"
+        className="bg-white rounded-2xl shadow-soft-lg p-12 border border-secondary-green/10 relative overflow-hidden print:shadow-none"
         style={{ minHeight: '500px' }}
       >
-        {/* Decorative elements */}
-        <div className="absolute top-6 left-6 text-4xl animate-twinkle">❄</div>
-        <div className="absolute top-6 right-6 text-4xl animate-twinkle" style={{ animationDelay: '0.5s' }}>❄</div>
-        <div className="absolute bottom-6 left-6 text-4xl">🎄</div>
-        <div className="absolute bottom-6 right-6 text-4xl">🎄</div>
-        
         {/* Card content */}
         <div className="relative z-10 text-center">
-          <h1 className="text-5xl font-bold text-christmas-red mb-4 glow">
-            🎄 Gift Card 🎄
-          </h1>
+          <div className="mb-8">
+            <div className="w-16 h-1 bg-accent-gold mx-auto mb-4"></div>
+            <h1 className="text-4xl md:text-5xl font-playfair font-bold text-secondary-green mb-2">
+              Gift Card
+            </h1>
+            <div className="w-16 h-1 bg-accent-gold mx-auto"></div>
+          </div>
           
           <div className="my-8">
-            <p className="text-2xl text-gray-700 mb-2">To:</p>
-            <p className="text-4xl font-bold text-christmas-green mb-6">
+            <p className="text-sm text-secondary-green/60 font-inter uppercase tracking-wide mb-2">To</p>
+            <p className="text-3xl md:text-4xl font-playfair font-bold text-secondary-green">
               {data.recipient}
             </p>
           </div>
 
-          <div className="my-8 bg-gradient-to-r from-christmas-red to-christmas-green rounded-2xl p-6 mx-auto max-w-md">
-            <p className="text-white text-sm mb-2">Gift Amount</p>
-            <p className="text-5xl font-bold text-christmas-gold">
+          <div className="my-10 bg-secondary-green/5 rounded-xl p-8 mx-auto max-w-md border border-secondary-green/10">
+            <p className="text-xs text-secondary-green/60 font-inter uppercase tracking-wide mb-2">Gift Amount</p>
+            <p className="text-5xl md:text-6xl font-playfair font-bold text-primary-red">
               ${parseFloat(data.amount || '0').toFixed(2)}
             </p>
           </div>
 
-          <div className="my-8 bg-white/50 rounded-xl p-6 mx-auto max-w-lg">
-            <p className="text-gray-800 text-lg leading-relaxed whitespace-pre-wrap">
+          <div className="my-8 bg-snow-white rounded-xl p-6 mx-auto max-w-lg border border-secondary-green/10">
+            <p className="text-secondary-green text-lg leading-relaxed whitespace-pre-wrap font-inter">
               {data.message}
             </p>
           </div>
 
           <div className="mt-12">
-            <p className="text-xl text-gray-600 mb-2">From:</p>
-            <p className="text-3xl font-bold text-christmas-red">
+            <p className="text-sm text-secondary-green/60 font-inter uppercase tracking-wide mb-2">From</p>
+            <p className="text-2xl md:text-3xl font-playfair font-bold text-secondary-green">
               {data.sender}
             </p>
-          </div>
-
-          <div className="mt-8 text-4xl">
-            🎁 🎅 ⛄ 🦌 🎄
           </div>
         </div>
       </div>
@@ -122,4 +100,3 @@ export default function GiftCardPreview({ data, onBack }: GiftCardPreviewProps) 
     </div>
   )
 }
-

@@ -8,11 +8,12 @@ export default function Snowflakes() {
   const [flakes, setFlakes] = useState<Array<{ id: number; left: number; delay: number; duration: number; emoji: string }>>([])
 
   useEffect(() => {
-    const newFlakes = Array.from({ length: 50 }, (_, i) => ({
+    // Subtle snowfall - fewer flakes for minimal aesthetic
+    const newFlakes = Array.from({ length: 20 }, (_, i) => ({
       id: i,
       left: Math.random() * 100,
       delay: Math.random() * 10,
-      duration: 5 + Math.random() * 10,
+      duration: 15 + Math.random() * 20, // Slower, more gentle
       emoji: snowflakes[Math.floor(Math.random() * snowflakes.length)],
     }))
     setFlakes(newFlakes)
@@ -23,7 +24,7 @@ export default function Snowflakes() {
       {flakes.map((flake) => (
         <div
           key={flake.id}
-          className="snowflake text-white text-xl md:text-2xl"
+          className="snowflake"
           style={{
             left: `${flake.left}%`,
             animationDelay: `${flake.delay}s`,
