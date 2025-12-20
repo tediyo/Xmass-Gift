@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Image from 'next/image'
+import AccentIcons from './AccentIcons'
 
 const greetingTemplates = [
   {
@@ -58,8 +59,8 @@ export default function GreetingGenerator() {
 
   const handleCopy = () => {
     const fullGreeting = customName 
-      ? `Dear ${customName},\n\n${selectedGreeting}\n\nMerry Christmas! 🎄`
-      : `${selectedGreeting}\n\nMerry Christmas! 🎄`
+      ? `Dear ${customName},\n\n${selectedGreeting}\n\nMerry Christmas!`
+      : `${selectedGreeting}\n\nMerry Christmas!`
     
     navigator.clipboard.writeText(fullGreeting)
     alert('Greeting copied to clipboard!')
@@ -70,36 +71,44 @@ export default function GreetingGenerator() {
     : selectedGreeting
 
   return (
-    <div className="w-full max-w-4xl mx-auto">
-      <div className="text-center mb-8">
-        <h2 className="text-5xl md:text-7xl font-bold text-christmas-gold glow mb-4">
-          🎄 Greeting Generator 🎄
-        </h2>
-        <p className="text-2xl text-white font-light">
-          Create the perfect Christmas greeting!
+    <div className="w-full max-w-3xl mx-auto fade-in">
+      <div className="text-center mb-10">
+        <div className="flex items-center justify-center gap-3 mb-4">
+          <AccentIcons type="star" size="md" />
+          <h2 className="text-4xl md:text-6xl font-playfair font-bold text-secondary-green">
+            Greeting Generator
+          </h2>
+          <AccentIcons type="star" size="md" />
+        </div>
+        <p className="text-lg md:text-xl text-secondary-green/70 font-inter">
+          Create the perfect Christmas greeting
         </p>
       </div>
 
-      <div className="bg-white/20 backdrop-blur-md rounded-3xl p-8 md:p-12 border-4 border-christmas-gold shadow-2xl">
-        <div className="space-y-6">
+      <div className="bg-white rounded-2xl shadow-soft-lg p-8 md:p-12 border border-secondary-green/10 relative">
+        {/* Subtle decorative element */}
+        <div className="absolute top-6 right-6 opacity-20">
+          <AccentIcons type="bell" size="md" />
+        </div>
+        <div className="space-y-8">
           <div>
-            <label className="block text-white text-xl font-semibold mb-3">
+            <label className="block text-secondary-green text-sm font-inter font-semibold mb-3 uppercase tracking-wide">
               Recipient Name (Optional)
             </label>
             <input
               type="text"
               value={customName}
               onChange={(e) => setCustomName(e.target.value)}
-              className="w-full px-6 py-4 rounded-xl bg-white/30 backdrop-blur-sm border-2 border-christmas-gold text-white placeholder-white/70 focus:outline-none focus:ring-4 focus:ring-christmas-gold text-lg"
+              className="w-full px-4 py-3 rounded-lg bg-snow-white border-2 border-secondary-green/20 text-secondary-green placeholder-secondary-green/40 focus:outline-none focus:border-primary-red focus:ring-2 focus:ring-primary-red/20 transition-all font-inter"
               placeholder="Enter name (e.g., John, Family, Friends)"
             />
           </div>
 
           <div>
-            <label className="block text-white text-xl font-semibold mb-3">
+            <label className="block text-secondary-green text-sm font-inter font-semibold mb-3 uppercase tracking-wide">
               Choose Greeting Style
             </label>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
               {greetingTemplates.map((category) => (
                 <button
                   key={category.category}
@@ -107,10 +116,10 @@ export default function GreetingGenerator() {
                     setSelectedCategory(category.category)
                     setShowPreview(false)
                   }}
-                  className={`px-4 py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 ${
+                  className={`px-4 py-3 rounded-lg font-inter font-semibold transition-all duration-300 ${
                     selectedCategory === category.category
-                      ? 'bg-christmas-gold text-red-900 border-4 border-white shadow-lg'
-                      : 'bg-white/20 text-white border-2 border-christmas-gold hover:bg-white/30'
+                      ? 'bg-primary-red text-white shadow-soft'
+                      : 'bg-snow-white text-secondary-green border-2 border-secondary-green/20 hover:border-secondary-green/40 hover-lift'
                   }`}
                 >
                   {category.category}
@@ -121,42 +130,32 @@ export default function GreetingGenerator() {
 
           <button
             onClick={handleGenerate}
-            className="w-full py-5 bg-gradient-to-r from-christmas-red to-christmas-green text-white text-2xl font-bold rounded-xl shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300 border-4 border-christmas-gold"
+            className="w-full py-4 bg-primary-red text-white text-lg font-inter font-semibold rounded-lg shadow-soft hover-lift transition-all duration-300"
           >
-            🎲 Generate Greeting 🎲
+            Generate Greeting
           </button>
 
           {showPreview && selectedGreeting && (
-            <div className="mt-8 bg-gradient-to-br from-white/30 to-white/10 rounded-2xl p-8 border-4 border-christmas-gold">
+            <div className="mt-8 bg-secondary-green/5 rounded-xl p-8 border border-secondary-green/10 fade-in">
               <div className="text-center">
-                <div className="flex justify-center mb-4 animate-bounce">
+                <div className="flex justify-center mb-6">
                   <Image 
                     src="/twoW.jpg" 
                     alt="Santa" 
-                    width={128}
-                    height={128}
-                    className="w-24 h-24 md:w-32 md:h-32 rounded-full border-4 border-christmas-gold shadow-xl object-cover"
+                    width={100}
+                    height={100}
+                    className="w-20 h-20 md:w-24 md:h-24 rounded-full border-2 border-accent-gold/30 shadow-soft object-cover"
                     unoptimized
                   />
                 </div>
-                <div className="text-2xl md:text-3xl text-white font-semibold leading-relaxed whitespace-pre-wrap mb-6">
+                <div className="text-xl md:text-2xl text-secondary-green font-inter leading-relaxed whitespace-pre-wrap mb-8">
                   {finalGreeting}
-                </div>
-                <div className="flex justify-center mb-6">
-                  <Image 
-                    src="/threeW.jpg" 
-                    alt="Christmas" 
-                    width={80}
-                    height={80}
-                    className="w-16 h-16 md:w-20 md:h-20 rounded-full border-2 border-christmas-gold object-cover"
-                    unoptimized
-                  />
                 </div>
                 <button
                   onClick={handleCopy}
-                  className="px-8 py-4 bg-christmas-gold text-red-900 font-bold rounded-xl hover:bg-yellow-400 transform hover:scale-105 transition-all duration-300 shadow-lg"
+                  className="px-8 py-3 bg-accent-gold text-secondary-green font-inter font-semibold rounded-lg hover-lift transition-all duration-300 shadow-soft"
                 >
-                  📋 Copy Greeting
+                  Copy Greeting
                 </button>
               </div>
             </div>
@@ -166,4 +165,3 @@ export default function GreetingGenerator() {
     </div>
   )
 }
-

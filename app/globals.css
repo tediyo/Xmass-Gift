@@ -12,14 +12,18 @@ html,
 body {
   max-width: 100vw;
   overflow-x: hidden;
-  background: linear-gradient(135deg, #8B0000 0%, #DC143C 30%, #B22222 60%, #8B0000 100%);
+  background: #F9FAF7;
   min-height: 100vh;
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(135deg, #8B0000 0%, #DC143C 30%, #B22222 60%, #8B0000 100%);
-  background-attachment: fixed;
+  font-family: var(--font-inter), sans-serif;
+  color: #0F3D2E;
+  background: #F9FAF7;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-playfair), serif;
 }
 
 @layer utilities {
@@ -28,14 +32,20 @@ body {
   }
 }
 
-/* Snowflake animation */
-@keyframes snowflake {
+/* Subtle snowfall animation */
+@keyframes snowfall {
   0% {
-    transform: translateY(0) rotate(0deg);
+    transform: translateY(-100vh) translateX(0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
     opacity: 1;
   }
   100% {
-    transform: translateY(100vh) rotate(360deg);
+    transform: translateY(100vh) translateX(20px) rotate(360deg);
     opacity: 0;
   }
 }
@@ -43,56 +53,45 @@ body {
 .snowflake {
   position: absolute;
   top: -10px;
-  color: white;
-  font-size: 1em;
-  animation: snowflake linear infinite;
+  color: rgba(15, 61, 46, 0.15);
+  font-size: 0.7em;
+  animation: snowfall linear infinite;
   pointer-events: none;
+  user-select: none;
 }
 
-/* Glow effect */
-.glow {
-  text-shadow: 0 0 10px rgba(255, 215, 0, 0.8),
-               0 0 20px rgba(255, 215, 0, 0.6),
-               0 0 30px rgba(255, 215, 0, 0.4);
-}
-
-/* Sparkle effect */
-@keyframes sparkle {
-  0%, 100% {
+/* Fade in animation */
+@keyframes fadeIn {
+  from {
     opacity: 0;
-    transform: scale(0);
+    transform: translateY(20px);
   }
-  50% {
+  to {
     opacity: 1;
-    transform: scale(1);
+    transform: translateY(0);
   }
 }
 
-.sparkle {
-  animation: sparkle 2s ease-in-out infinite;
+.fade-in {
+  animation: fadeIn 0.6s ease-out;
 }
 
-/* Santa animation */
-@keyframes santaFloat {
-  0%, 100% {
-    transform: translateY(0px) rotate(0deg);
-  }
-  25% {
-    transform: translateY(-15px) rotate(-5deg);
-  }
-  50% {
-    transform: translateY(-25px) rotate(0deg);
-  }
-  75% {
-    transform: translateY(-15px) rotate(5deg);
-  }
+/* Gentle hover scale */
+.hover-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.santa-float {
-  animation: santaFloat 4s ease-in-out infinite;
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
 }
 
-/* Red background pattern */
+/* Smooth transitions */
+* {
+  transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+
+/* Subtle background texture */
 body::before {
   content: '';
   position: fixed;
@@ -100,11 +99,16 @@ body::before {
   left: 0;
   width: 100%;
   height: 100%;
-  background: 
-    radial-gradient(circle at 20% 50%, rgba(255, 0, 0, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 80% 80%, rgba(220, 20, 60, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 40% 20%, rgba(139, 0, 0, 0.1) 0%, transparent 50%);
+  background-image: 
+    radial-gradient(circle at 20% 30%, rgba(15, 61, 46, 0.02) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(177, 18, 38, 0.02) 0%, transparent 50%);
   pointer-events: none;
   z-index: 0;
+}
+
+/* Ensure content is above background texture */
+main {
+  position: relative;
+  z-index: 1;
 }
 

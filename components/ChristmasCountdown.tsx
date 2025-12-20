@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
+import AccentIcons from './AccentIcons'
 
 export default function ChristmasCountdown() {
   const [timeLeft, setTimeLeft] = useState({
@@ -41,50 +42,53 @@ export default function ChristmasCountdown() {
   }, [])
 
   const TimeBox = ({ value, label }: { value: number; label: string }) => (
-    <div className="flex flex-col items-center justify-center bg-white/20 backdrop-blur-md rounded-2xl p-6 md:p-8 border-4 border-christmas-gold shadow-2xl transform hover:scale-110 transition-all duration-300">
-      <div className="text-6xl md:text-8xl font-bold text-christmas-gold glow mb-2">
+    <div className="flex flex-col items-center justify-center bg-white rounded-xl shadow-soft p-6 md:p-8 border border-secondary-green/10 hover-lift transition-all duration-300">
+      <div className="text-5xl md:text-7xl font-playfair font-bold text-primary-red mb-2">
         {String(value).padStart(2, '0')}
       </div>
-      <div className="text-xl md:text-2xl font-semibold text-white uppercase tracking-wider">
+      <div className="text-sm md:text-base font-inter font-semibold text-secondary-green uppercase tracking-wider">
         {label}
       </div>
     </div>
   )
 
   return (
-    <div className="w-full">
-      <div className="text-center mb-8">
-        <h2 className="text-5xl md:text-7xl font-bold text-christmas-gold glow mb-4">
-          🎄 Countdown to Christmas 🎄
-        </h2>
-        <p className="text-2xl text-white font-light">
-          Time until Santa arrives!
+    <div className="w-full fade-in">
+      <div className="text-center mb-12">
+        <div className="flex items-center justify-center gap-3 mb-4">
+          <AccentIcons type="bell" size="md" />
+          <h2 className="text-4xl md:text-6xl font-playfair font-bold text-secondary-green">
+            Countdown to Christmas
+          </h2>
+          <AccentIcons type="bell" size="md" />
+        </div>
+        <p className="text-lg md:text-xl text-secondary-green/70 font-inter">
+          Time until the holidays arrive
         </p>
       </div>
 
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 max-w-5xl mx-auto">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 max-w-4xl mx-auto mb-12">
         <TimeBox value={timeLeft.days} label="Days" />
         <TimeBox value={timeLeft.hours} label="Hours" />
         <TimeBox value={timeLeft.minutes} label="Minutes" />
         <TimeBox value={timeLeft.seconds} label="Seconds" />
       </div>
 
-      <div className="text-center mt-8">
-        <div className="flex justify-center animate-bounce">
+      <div className="text-center">
+        <div className="flex justify-center mb-4 animate-gentle-float">
           <Image 
             src="/oneW.jpg" 
             alt="Santa" 
-            width={160}
-            height={160}
-            className="w-32 h-32 md:w-40 md:h-40 rounded-full border-4 border-christmas-gold shadow-2xl object-cover"
+            width={120}
+            height={120}
+            className="w-24 h-24 md:w-32 md:h-32 rounded-full border-4 border-accent-gold/30 shadow-soft object-cover"
             unoptimized
           />
         </div>
-        <p className="text-xl text-white mt-4 font-semibold">
-          Santa is getting ready! 🎁
+        <p className="text-lg text-secondary-green/70 font-inter">
+          The holidays are approaching
         </p>
       </div>
     </div>
   )
 }
-
