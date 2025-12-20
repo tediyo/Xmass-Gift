@@ -1,0 +1,110 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  background: linear-gradient(135deg, #8B0000 0%, #DC143C 30%, #B22222 60%, #8B0000 100%);
+  min-height: 100vh;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(135deg, #8B0000 0%, #DC143C 30%, #B22222 60%, #8B0000 100%);
+  background-attachment: fixed;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Snowflake animation */
+@keyframes snowflake {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+.snowflake {
+  position: absolute;
+  top: -10px;
+  color: white;
+  font-size: 1em;
+  animation: snowflake linear infinite;
+  pointer-events: none;
+}
+
+/* Glow effect */
+.glow {
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.8),
+               0 0 20px rgba(255, 215, 0, 0.6),
+               0 0 30px rgba(255, 215, 0, 0.4);
+}
+
+/* Sparkle effect */
+@keyframes sparkle {
+  0%, 100% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.sparkle {
+  animation: sparkle 2s ease-in-out infinite;
+}
+
+/* Santa animation */
+@keyframes santaFloat {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-15px) rotate(-5deg);
+  }
+  50% {
+    transform: translateY(-25px) rotate(0deg);
+  }
+  75% {
+    transform: translateY(-15px) rotate(5deg);
+  }
+}
+
+.santa-float {
+  animation: santaFloat 4s ease-in-out infinite;
+}
+
+/* Red background pattern */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 20% 50%, rgba(255, 0, 0, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(220, 20, 60, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 40% 20%, rgba(139, 0, 0, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
