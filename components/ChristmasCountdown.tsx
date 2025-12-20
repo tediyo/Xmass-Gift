@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
+import AccentIcons from './AccentIcons'
 
 export default function ChristmasCountdown() {
   const [timeLeft, setTimeLeft] = useState({
@@ -54,9 +55,13 @@ export default function ChristmasCountdown() {
   return (
     <div className="w-full fade-in">
       <div className="text-center mb-12">
-        <h2 className="text-4xl md:text-6xl font-playfair font-bold text-secondary-green mb-4">
-          Countdown to Christmas
-        </h2>
+        <div className="flex items-center justify-center gap-3 mb-4">
+          <AccentIcons type="bell" size="md" />
+          <h2 className="text-4xl md:text-6xl font-playfair font-bold text-secondary-green">
+            Countdown to Christmas
+          </h2>
+          <AccentIcons type="bell" size="md" />
+        </div>
         <p className="text-lg md:text-xl text-secondary-green/70 font-inter">
           Time until the holidays arrive
         </p>

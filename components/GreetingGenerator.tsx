@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Image from 'next/image'
+import AccentIcons from './AccentIcons'
 
 const greetingTemplates = [
   {
@@ -72,15 +73,23 @@ export default function GreetingGenerator() {
   return (
     <div className="w-full max-w-3xl mx-auto fade-in">
       <div className="text-center mb-10">
-        <h2 className="text-4xl md:text-6xl font-playfair font-bold text-secondary-green mb-4">
-          Greeting Generator
-        </h2>
+        <div className="flex items-center justify-center gap-3 mb-4">
+          <AccentIcons type="star" size="md" />
+          <h2 className="text-4xl md:text-6xl font-playfair font-bold text-secondary-green">
+            Greeting Generator
+          </h2>
+          <AccentIcons type="star" size="md" />
+        </div>
         <p className="text-lg md:text-xl text-secondary-green/70 font-inter">
           Create the perfect Christmas greeting
         </p>
       </div>
 
-      <div className="bg-white rounded-2xl shadow-soft-lg p-8 md:p-12 border border-secondary-green/10">
+      <div className="bg-white rounded-2xl shadow-soft-lg p-8 md:p-12 border border-secondary-green/10 relative">
+        {/* Subtle decorative element */}
+        <div className="absolute top-6 right-6 opacity-20">
+          <AccentIcons type="bell" size="md" />
+        </div>
         <div className="space-y-8">
           <div>
             <label className="block text-secondary-green text-sm font-inter font-semibold mb-3 uppercase tracking-wide">

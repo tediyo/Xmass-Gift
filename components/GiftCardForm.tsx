@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, FormEvent } from 'react'
+import AccentIcons from './AccentIcons'
 
 interface GiftCardFormProps {
   onSubmit: (data: {
@@ -31,11 +32,19 @@ export default function GiftCardForm({ onSubmit, initialData }: GiftCardFormProp
 
   return (
     <div className="max-w-2xl mx-auto fade-in">
-      <div className="bg-white rounded-2xl shadow-soft-lg p-8 md:p-12 border border-secondary-green/10">
+      <div className="bg-white rounded-2xl shadow-soft-lg p-8 md:p-12 border border-secondary-green/10 relative">
+        {/* Subtle accent icon */}
+        <div className="absolute top-6 right-6">
+          <AccentIcons type="gift" size="sm" />
+        </div>
         <form onSubmit={handleSubmit}>
-          <h2 className="text-3xl md:text-4xl font-playfair font-bold text-center mb-8 text-secondary-green">
-            Create Your Gift Card
-          </h2>
+          <div className="flex items-center justify-center gap-3 mb-8">
+            <AccentIcons type="ornament" size="sm" />
+            <h2 className="text-3xl md:text-4xl font-playfair font-bold text-secondary-green">
+              Create Your Gift Card
+            </h2>
+            <AccentIcons type="ornament" size="sm" />
+          </div>
           
           <div className="space-y-6">
             <div>

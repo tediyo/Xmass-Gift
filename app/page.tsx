@@ -7,6 +7,8 @@ import Snowflakes from '@/components/Snowflakes'
 import ChristmasCountdown from '@/components/ChristmasCountdown'
 import GreetingGenerator from '@/components/GreetingGenerator'
 import DigitalCardCreator from '@/components/DigitalCardCreator'
+import HeroIllustration from '@/components/HeroIllustration'
+import AccentIcons from '@/components/AccentIcons'
 
 type TabType = 'giftcard' | 'countdown' | 'greeting' | 'digitalcard'
 
@@ -44,9 +46,14 @@ export default function Home() {
       <div className="relative z-10 container mx-auto px-4 py-12 md:py-16">
         {/* Hero Section */}
         <div className="text-center mb-12 md:mb-16 fade-in">
-          <h1 className="text-5xl md:text-7xl font-playfair font-bold mb-6 text-secondary-green">
-            Merry Christmas
-          </h1>
+          <HeroIllustration />
+          <div className="flex justify-center gap-2 mb-6">
+            <AccentIcons type="star" size="sm" />
+            <h1 className="text-5xl md:text-7xl font-playfair font-bold text-secondary-green">
+              Merry Christmas
+            </h1>
+            <AccentIcons type="star" size="sm" />
+          </div>
           <p className="text-xl md:text-2xl text-secondary-green/70 font-inter font-light max-w-2xl mx-auto">
             Create beautiful, personalized holiday experiences
           </p>

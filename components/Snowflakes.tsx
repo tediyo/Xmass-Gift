@@ -8,12 +8,12 @@ export default function Snowflakes() {
   const [flakes, setFlakes] = useState<Array<{ id: number; left: number; delay: number; duration: number; emoji: string }>>([])
 
   useEffect(() => {
-    // Subtle snowfall - fewer flakes for minimal aesthetic
-    const newFlakes = Array.from({ length: 20 }, (_, i) => ({
+    // Very subtle snowfall - minimal aesthetic with low opacity
+    const newFlakes = Array.from({ length: 15 }, (_, i) => ({
       id: i,
       left: Math.random() * 100,
-      delay: Math.random() * 10,
-      duration: 15 + Math.random() * 20, // Slower, more gentle
+      delay: Math.random() * 15,
+      duration: 20 + Math.random() * 25, // Very slow and gentle
       emoji: snowflakes[Math.floor(Math.random() * snowflakes.length)],
     }))
     setFlakes(newFlakes)

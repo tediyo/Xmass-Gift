@@ -1,6 +1,7 @@
 'use client'
 
 import { useRef } from 'react'
+import AccentIcons from './AccentIcons'
 
 interface GiftCardPreviewProps {
   data: {
@@ -41,14 +42,29 @@ export default function GiftCardPreview({ data, onBack }: GiftCardPreviewProps) 
         className="bg-white rounded-2xl shadow-soft-lg p-12 border border-secondary-green/10 relative overflow-hidden print:shadow-none"
         style={{ minHeight: '500px' }}
       >
+        {/* Subtle decorative corner elements */}
+        <div className="absolute top-4 right-4 opacity-30">
+          <AccentIcons type="star" size="sm" />
+        </div>
+        <div className="absolute bottom-4 left-4 opacity-30">
+          <AccentIcons type="ornament" size="sm" />
+        </div>
         {/* Card content */}
         <div className="relative z-10 text-center">
           <div className="mb-8">
-            <div className="w-16 h-1 bg-accent-gold mx-auto mb-4"></div>
+            <div className="flex items-center justify-center gap-3 mb-4">
+              <AccentIcons type="star" size="sm" />
+              <div className="w-16 h-1 bg-accent-gold"></div>
+              <AccentIcons type="star" size="sm" />
+            </div>
             <h1 className="text-4xl md:text-5xl font-playfair font-bold text-secondary-green mb-2">
               Gift Card
             </h1>
-            <div className="w-16 h-1 bg-accent-gold mx-auto"></div>
+            <div className="flex items-center justify-center gap-3 mt-4">
+              <AccentIcons type="star" size="sm" />
+              <div className="w-16 h-1 bg-accent-gold"></div>
+              <AccentIcons type="star" size="sm" />
+            </div>
           </div>
           
           <div className="my-8">
