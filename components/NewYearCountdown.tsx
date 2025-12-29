@@ -58,7 +58,7 @@ export default function NewYearCountdown() {
   }, [])
 
   const TimeBox = ({ value, label }: { value: number; label: string }) => (
-    <div className="flex flex-col items-center justify-center bg-white rounded-xl shadow-soft p-6 md:p-8 border border-secondary-green/10 hover-lift transition-all duration-300">
+    <div className="flex flex-col items-center justify-center bg-white rounded-xl shadow-soft p-6 md:p-8 border-2 border-l-primary-red border-r-secondary-green hover-lift transition-all duration-300">
       <div className="text-5xl md:text-7xl font-playfair font-bold text-primary-red mb-2">
         {String(value).padStart(2, '0')}
       </div>
@@ -85,7 +85,7 @@ export default function NewYearCountdown() {
           </p>
         </div>
 
-        <div className="bg-white rounded-2xl shadow-soft-lg p-12 border border-secondary-green/10 mb-8">
+        <div className="bg-white rounded-2xl shadow-soft-lg p-12 border-4 border-t-primary-red border-r-secondary-green border-b-primary-red border-l-secondary-green mb-8">
           <div className="text-center">
             <div className="flex justify-center gap-4 mb-8 flex-wrap text-6xl md:text-8xl">
               <span className="animate-bounce" style={{ animationDelay: '0s' }}>🎉</span>
@@ -139,7 +139,7 @@ export default function NewYearCountdown() {
           </p>
         </div>
 
-        <div className="bg-white rounded-2xl shadow-soft-lg p-12 border border-secondary-green/10 mb-8">
+        <div className="bg-white rounded-2xl shadow-soft-lg p-12 border-4 border-t-secondary-green border-r-primary-red border-b-secondary-green border-l-primary-red mb-8">
           <div className="text-center">
             <div className="text-7xl md:text-9xl font-playfair font-bold text-primary-red mb-4">
               {daysPassed}

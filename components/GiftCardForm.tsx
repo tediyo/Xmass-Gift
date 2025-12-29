@@ -32,7 +32,7 @@ export default function GiftCardForm({ onSubmit, initialData }: GiftCardFormProp
 
   return (
     <div className="max-w-2xl mx-auto fade-in">
-      <div className="bg-white rounded-2xl shadow-soft-lg p-8 md:p-12 border border-secondary-green/10 relative">
+      <div className="bg-white rounded-2xl shadow-soft-lg p-8 md:p-12 border-4 border-t-primary-red border-r-secondary-green border-b-primary-red border-l-secondary-green relative">
         {/* Subtle accent icon */}
         <div className="absolute top-6 right-6">
           <AccentIcons type="sparkle" size="sm" />
@@ -55,7 +55,7 @@ export default function GiftCardForm({ onSubmit, initialData }: GiftCardFormProp
                 type="text"
                 value={formData.recipient}
                 onChange={(e) => handleChange('recipient', e.target.value)}
-                className="w-full px-4 py-3 rounded-lg bg-snow-white border-2 border-secondary-green/20 text-secondary-green placeholder-secondary-green/40 focus:outline-none focus:border-primary-red focus:ring-2 focus:ring-primary-red/20 transition-all"
+                className="w-full px-4 py-3 rounded-lg bg-snow-white border-2 border-l-primary-red border-r-secondary-green text-secondary-green placeholder-secondary-green/40 focus:outline-none focus:border-l-secondary-green focus:border-r-primary-red focus:ring-2 focus:ring-primary-red/20 transition-all"
                 placeholder="Who is this gift for?"
                 required
               />
@@ -69,7 +69,7 @@ export default function GiftCardForm({ onSubmit, initialData }: GiftCardFormProp
                 type="text"
                 value={formData.sender}
                 onChange={(e) => handleChange('sender', e.target.value)}
-                className="w-full px-4 py-3 rounded-lg bg-snow-white border-2 border-secondary-green/20 text-secondary-green placeholder-secondary-green/40 focus:outline-none focus:border-primary-red focus:ring-2 focus:ring-primary-red/20 transition-all"
+                className="w-full px-4 py-3 rounded-lg bg-snow-white border-2 border-l-primary-red border-r-secondary-green text-secondary-green placeholder-secondary-green/40 focus:outline-none focus:border-l-secondary-green focus:border-r-primary-red focus:ring-2 focus:ring-primary-red/20 transition-all"
                 placeholder="Your name"
                 required
               />
@@ -87,7 +87,7 @@ export default function GiftCardForm({ onSubmit, initialData }: GiftCardFormProp
                   type="number"
                   value={formData.amount}
                   onChange={(e) => handleChange('amount', e.target.value)}
-                  className="w-full pl-10 pr-4 py-3 rounded-lg bg-snow-white border-2 border-secondary-green/20 text-secondary-green placeholder-secondary-green/40 focus:outline-none focus:border-primary-red focus:ring-2 focus:ring-primary-red/20 transition-all"
+                  className="w-full pl-10 pr-4 py-3 rounded-lg bg-snow-white border-2 border-l-primary-red border-r-secondary-green text-secondary-green placeholder-secondary-green/40 focus:outline-none focus:border-l-secondary-green focus:border-r-primary-red focus:ring-2 focus:ring-primary-red/20 transition-all"
                   placeholder="0.00"
                   min="0"
                   step="0.01"
@@ -103,7 +103,7 @@ export default function GiftCardForm({ onSubmit, initialData }: GiftCardFormProp
               <textarea
                 value={formData.message}
                 onChange={(e) => handleChange('message', e.target.value)}
-                className="w-full px-4 py-3 rounded-lg bg-snow-white border-2 border-secondary-green/20 text-secondary-green placeholder-secondary-green/40 focus:outline-none focus:border-primary-red focus:ring-2 focus:ring-primary-red/20 transition-all resize-none"
+                className="w-full px-4 py-3 rounded-lg bg-snow-white border-2 border-l-primary-red border-r-secondary-green text-secondary-green placeholder-secondary-green/40 focus:outline-none focus:border-l-secondary-green focus:border-r-primary-red focus:ring-2 focus:ring-primary-red/20 transition-all resize-none"
                 placeholder="Write a heartfelt message..."
                 rows={5}
                 required

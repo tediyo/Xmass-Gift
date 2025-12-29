@@ -65,7 +65,7 @@ export default function DigitalCardCreator() {
       </div>
 
       {!showPreview ? (
-        <div className="bg-white rounded-2xl shadow-soft-lg p-8 md:p-12 border border-secondary-green/10 relative">
+        <div className="bg-white rounded-2xl shadow-soft-lg p-8 md:p-12 border-4 border-t-primary-red border-r-secondary-green border-b-primary-red border-l-secondary-green relative">
           {/* Subtle decorative element */}
           <div className="absolute top-6 left-6 opacity-20">
             <AccentIcons type="party" size="md" />
@@ -80,7 +80,7 @@ export default function DigitalCardCreator() {
                   type="text"
                   value={cardData.recipient}
                   onChange={(e) => handleChange('recipient', e.target.value)}
-                  className="w-full px-4 py-3 rounded-lg bg-snow-white border-2 border-secondary-green/20 text-secondary-green placeholder-secondary-green/40 focus:outline-none focus:border-primary-red focus:ring-2 focus:ring-primary-red/20 transition-all font-inter"
+                  className="w-full px-4 py-3 rounded-lg bg-snow-white border-2 border-l-primary-red border-r-secondary-green text-secondary-green placeholder-secondary-green/40 focus:outline-none focus:border-l-secondary-green focus:border-r-primary-red focus:ring-2 focus:ring-primary-red/20 transition-all font-inter"
                   placeholder="Recipient name"
                 />
               </div>
@@ -93,7 +93,7 @@ export default function DigitalCardCreator() {
                   type="text"
                   value={cardData.sender}
                   onChange={(e) => handleChange('sender', e.target.value)}
-                  className="w-full px-4 py-3 rounded-lg bg-snow-white border-2 border-secondary-green/20 text-secondary-green placeholder-secondary-green/40 focus:outline-none focus:border-primary-red focus:ring-2 focus:ring-primary-red/20 transition-all font-inter"
+                  className="w-full px-4 py-3 rounded-lg bg-snow-white border-2 border-l-primary-red border-r-secondary-green text-secondary-green placeholder-secondary-green/40 focus:outline-none focus:border-l-secondary-green focus:border-r-primary-red focus:ring-2 focus:ring-primary-red/20 transition-all font-inter"
                   placeholder="Your name"
                 />
               </div>
@@ -106,7 +106,7 @@ export default function DigitalCardCreator() {
               <textarea
                 value={cardData.message}
                 onChange={(e) => handleChange('message', e.target.value)}
-                  className="w-full px-4 py-3 rounded-lg bg-snow-white border-2 border-secondary-green/20 text-secondary-green placeholder-secondary-green/40 focus:outline-none focus:border-primary-red focus:ring-2 focus:ring-primary-red/20 transition-all resize-none font-inter"
+                  className="w-full px-4 py-3 rounded-lg bg-snow-white border-2 border-l-primary-red border-r-secondary-green text-secondary-green placeholder-secondary-green/40 focus:outline-none focus:border-l-secondary-green focus:border-r-primary-red focus:ring-2 focus:ring-primary-red/20 transition-all resize-none font-inter"
                 placeholder="Write your New Year message here..."
                 rows={5}
               />
@@ -121,10 +121,10 @@ export default function DigitalCardCreator() {
                   <button
                     key={template.id}
                     onClick={() => handleChange('template', template.id)}
-                    className={`h-16 rounded-lg transition-all ${
+                    className={`h-16 rounded-lg transition-all border-2 ${
                       cardData.template === template.id
-                        ? 'ring-4 ring-accent-gold shadow-soft-lg scale-105'
-                        : 'hover-lift'
+                        ? 'ring-4 ring-accent-gold shadow-soft-lg scale-105 border-l-primary-red border-r-secondary-green'
+                        : 'border-l-secondary-green border-r-primary-red hover-lift'
                     } ${template.bg} ${template.text} ${template.border || ''}`}
                   >
                     <span className="font-inter font-semibold text-sm">{template.name}</span>
@@ -144,8 +144,8 @@ export default function DigitalCardCreator() {
                     onClick={() => handleChange('santaImage', image.url)}
                     className={`w-full aspect-square rounded-lg border-2 transition-all overflow-hidden ${
                       cardData.santaImage === image.url
-                        ? 'border-accent-gold ring-4 ring-accent-gold/30 shadow-soft-lg scale-105'
-                        : 'border-secondary-green/20 hover:border-secondary-green/40 hover-lift'
+                        ? 'border-l-primary-red border-r-secondary-green ring-4 ring-accent-gold/30 shadow-soft-lg scale-105'
+                        : 'border-l-secondary-green border-r-primary-red hover:border-l-primary-red hover:border-r-secondary-green hover-lift'
                     }`}
                   >
                     <Image 
@@ -174,7 +174,7 @@ export default function DigitalCardCreator() {
           <div className="mb-6 flex gap-4 justify-center">
             <button
               onClick={() => setShowPreview(false)}
-              className="px-6 py-3 bg-white text-secondary-green font-inter font-semibold rounded-lg border-2 border-secondary-green/20 hover:border-secondary-green/40 hover-lift transition-all"
+              className="px-6 py-3 bg-white text-secondary-green font-inter font-semibold rounded-lg border-2 border-l-primary-red border-r-secondary-green hover:border-l-secondary-green hover:border-r-primary-red hover-lift transition-all"
             >
               ← Edit Card
             </button>
@@ -188,7 +188,7 @@ export default function DigitalCardCreator() {
 
           <div
             ref={cardRef}
-            className={`${selectedTemplate?.bg} ${selectedTemplate?.text} rounded-2xl shadow-soft-lg p-12 border border-secondary-green/10 relative overflow-hidden min-h-[600px] print:border-2`}
+            className={`${selectedTemplate?.bg} ${selectedTemplate?.text} rounded-2xl shadow-soft-lg p-12 border-4 border-t-primary-red border-r-secondary-green border-b-primary-red border-l-secondary-green relative overflow-hidden min-h-[600px] print:border-2`}
           >
             <div className="relative z-10 text-center h-full flex flex-col justify-center">
               <div className="mb-8 flex justify-center animate-gentle-float">

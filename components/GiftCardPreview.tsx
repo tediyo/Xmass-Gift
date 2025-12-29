@@ -25,7 +25,7 @@ export default function GiftCardPreview({ data, onBack }: GiftCardPreviewProps) 
       <div className="mb-6 flex gap-4 justify-center">
         <button
           onClick={onBack}
-          className="px-6 py-3 bg-white text-secondary-green font-inter font-semibold rounded-lg border-2 border-secondary-green/20 hover:border-secondary-green/40 hover-lift transition-all"
+          className="px-6 py-3 bg-white text-secondary-green font-inter font-semibold rounded-lg border-2 border-l-primary-red border-r-secondary-green hover:border-l-secondary-green hover:border-r-primary-red hover-lift transition-all"
         >
           ← Edit Card
         </button>
@@ -39,7 +39,7 @@ export default function GiftCardPreview({ data, onBack }: GiftCardPreviewProps) 
 
       <div
         ref={cardRef}
-        className="bg-white rounded-2xl shadow-soft-lg p-12 border border-secondary-green/10 relative overflow-hidden print:shadow-none"
+        className="bg-white rounded-2xl shadow-soft-lg p-12 border-4 border-t-primary-red border-r-secondary-green border-b-primary-red border-l-secondary-green relative overflow-hidden print:shadow-none"
         style={{ minHeight: '500px' }}
       >
         {/* Subtle decorative corner elements */}
@@ -74,14 +74,14 @@ export default function GiftCardPreview({ data, onBack }: GiftCardPreviewProps) 
             </p>
           </div>
 
-          <div className="my-10 bg-secondary-green/5 rounded-xl p-8 mx-auto max-w-md border border-secondary-green/10">
+          <div className="my-10 bg-secondary-green/5 rounded-xl p-8 mx-auto max-w-md border-2 border-l-primary-red border-r-secondary-green">
             <p className="text-xs text-secondary-green/60 font-inter uppercase tracking-wide mb-2">Gift Amount</p>
             <p className="text-5xl md:text-6xl font-playfair font-bold text-primary-red">
               ${parseFloat(data.amount || '0').toFixed(2)}
             </p>
           </div>
 
-          <div className="my-8 bg-snow-white rounded-xl p-6 mx-auto max-w-lg border border-secondary-green/10">
+          <div className="my-8 bg-snow-white rounded-xl p-6 mx-auto max-w-lg border-2 border-l-secondary-green border-r-primary-red">
             <p className="text-secondary-green text-lg leading-relaxed whitespace-pre-wrap font-inter">
               {data.message}
             </p>

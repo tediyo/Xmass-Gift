@@ -70,8 +70,8 @@ export default function Home() {
               }}
               className={`px-6 md:px-8 py-3 rounded-full font-inter text-base md:text-lg transition-all duration-300 ${
                 activeTab === tab.id
-                  ? 'bg-primary-red text-white shadow-soft-lg'
-                  : 'bg-white text-secondary-green border-2 border-secondary-green/20 hover:border-secondary-green/40 hover-lift'
+                  ? 'bg-primary-red text-white shadow-soft-lg border-2 border-secondary-green'
+                  : 'bg-white text-secondary-green border-2 border-l-primary-red border-r-secondary-green hover:border-l-secondary-green hover:border-r-primary-red hover-lift'
               }`}
             >
               {tab.label}
