@@ -171,7 +171,7 @@ export default function DigitalCardCreator() {
         </div>
       ) : (
         <div>
-          <div className="mb-6 flex gap-4 justify-center">
+          <div className="mb-6 flex gap-4 justify-center no-print">
             <button
               onClick={() => setShowPreview(false)}
               className="px-6 py-3 bg-white text-secondary-green font-inter font-semibold rounded-lg border-2 border-l-primary-red border-r-secondary-green hover:border-l-secondary-green hover:border-r-primary-red hover-lift transition-all"
@@ -188,7 +188,8 @@ export default function DigitalCardCreator() {
 
           <div
             ref={cardRef}
-            className={`${selectedTemplate?.bg} ${selectedTemplate?.text} rounded-2xl shadow-soft-lg p-12 border-4 border-t-primary-red border-r-secondary-green border-b-primary-red border-l-secondary-green relative overflow-hidden min-h-[600px] print:border-2`}
+            id="printable-digital-card"
+            className={`${selectedTemplate?.bg} ${selectedTemplate?.text} rounded-2xl shadow-soft-lg p-12 border-4 border-t-primary-red border-r-secondary-green border-b-primary-red border-l-secondary-green relative overflow-hidden min-h-[600px]`}
           >
             <div className="relative z-10 text-center h-full flex flex-col justify-center">
               <div className="mb-8 flex justify-center animate-gentle-float">
@@ -229,6 +230,42 @@ export default function DigitalCardCreator() {
           </div>
         </div>
       )}
+      
+      <style jsx global>{`
+        @media print {
+          @page {
+            margin: 0.5cm;
+            size: A4;
+          }
+          
+          body * {
+            visibility: hidden;
+          }
+          
+          #printable-digital-card,
+          #printable-digital-card * {
+            visibility: visible;
+          }
+          
+          #printable-digital-card {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            max-width: 100%;
+            margin: 0;
+            padding: 2cm;
+            box-shadow: none;
+            page-break-after: avoid;
+            page-break-inside: avoid;
+          }
+          
+          button,
+          .mb-6 {
+            display: none !important;
+          }
+        }
+      `}</style>
     </div>
   )
 }

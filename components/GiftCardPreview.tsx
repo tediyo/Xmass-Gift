@@ -22,7 +22,7 @@ export default function GiftCardPreview({ data, onBack }: GiftCardPreviewProps) 
 
   return (
     <div className="max-w-2xl mx-auto fade-in">
-      <div className="mb-6 flex gap-4 justify-center">
+      <div className="mb-6 flex gap-4 justify-center no-print">
         <button
           onClick={onBack}
           className="px-6 py-3 bg-white text-secondary-green font-inter font-semibold rounded-lg border-2 border-l-primary-red border-r-secondary-green hover:border-l-secondary-green hover:border-r-primary-red hover-lift transition-all"
@@ -39,7 +39,8 @@ export default function GiftCardPreview({ data, onBack }: GiftCardPreviewProps) 
 
       <div
         ref={cardRef}
-        className="bg-white rounded-2xl shadow-soft-lg p-12 border-4 border-t-primary-red border-r-secondary-green border-b-primary-red border-l-secondary-green relative overflow-hidden print:shadow-none"
+        id="printable-card"
+        className="bg-white rounded-2xl shadow-soft-lg p-12 border-4 border-t-primary-red border-r-secondary-green border-b-primary-red border-l-secondary-green relative overflow-hidden"
         style={{ minHeight: '500px' }}
       >
         {/* Subtle decorative corner elements */}
@@ -98,18 +99,36 @@ export default function GiftCardPreview({ data, onBack }: GiftCardPreviewProps) 
 
       <style jsx global>{`
         @media print {
+          @page {
+            margin: 0.5cm;
+            size: A4;
+          }
+          
           body * {
             visibility: hidden;
           }
-          .print\\:shadow-none,
-          .print\\:shadow-none * {
+          
+          #printable-card,
+          #printable-card * {
             visibility: visible;
           }
-          .print\\:shadow-none {
+          
+          #printable-card {
             position: absolute;
             left: 0;
             top: 0;
             width: 100%;
+            max-width: 100%;
+            margin: 0;
+            padding: 2cm;
+            box-shadow: none;
+            page-break-after: avoid;
+            page-break-inside: avoid;
+          }
+          
+          button,
+          .mb-6 {
+            display: none !important;
           }
         }
       `}</style>

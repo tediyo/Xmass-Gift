@@ -113,3 +113,30 @@ main {
   z-index: 1;
 }
 
+/* Print styles */
+@media print {
+  @page {
+    margin: 0.5cm;
+    size: A4;
+  }
+  
+  body {
+    background: white !important;
+  }
+  
+  body::before {
+    display: none !important;
+  }
+  
+  .snowflake,
+  .fade-in {
+    display: none !important;
+  }
+  
+  nav,
+  button:not(.print-button),
+  .no-print {
+    display: none !important;
+  }
+}
+
