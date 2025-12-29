@@ -53,11 +53,12 @@ h1, h2, h3, h4, h5, h6 {
 .snowflake {
   position: absolute;
   top: -10px;
-  color: rgba(15, 61, 46, 0.15);
-  font-size: 0.7em;
+  color: rgba(15, 61, 46, 0.2);
+  font-size: 0.8em;
   animation: snowfall linear infinite;
   pointer-events: none;
   user-select: none;
+  filter: drop-shadow(0 0 2px rgba(230, 182, 92, 0.3));
 }
 
 /* Fade in animation */

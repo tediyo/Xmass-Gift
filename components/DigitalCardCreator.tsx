@@ -53,14 +53,14 @@ export default function DigitalCardCreator() {
     <div className="w-full max-w-4xl mx-auto fade-in">
       <div className="text-center mb-10">
         <div className="flex items-center justify-center gap-3 mb-4">
-          <AccentIcons type="ornament" size="md" />
+          <AccentIcons type="star" size="md" />
           <h2 className="text-4xl md:text-6xl font-playfair font-bold text-secondary-green">
-            Digital Card Creator
+            New Year Card Creator
           </h2>
-          <AccentIcons type="ornament" size="md" />
+          <AccentIcons type="star" size="md" />
         </div>
         <p className="text-lg md:text-xl text-secondary-green/70 font-inter">
-          Design your personalized Christmas card
+          Design your personalized New Year card
         </p>
       </div>
 
@@ -68,7 +68,7 @@ export default function DigitalCardCreator() {
         <div className="bg-white rounded-2xl shadow-soft-lg p-8 md:p-12 border border-secondary-green/10 relative">
           {/* Subtle decorative element */}
           <div className="absolute top-6 left-6 opacity-20">
-            <AccentIcons type="gift" size="md" />
+            <AccentIcons type="party" size="md" />
           </div>
           <div className="space-y-8">
             <div className="grid md:grid-cols-2 gap-6">
@@ -106,8 +106,8 @@ export default function DigitalCardCreator() {
               <textarea
                 value={cardData.message}
                 onChange={(e) => handleChange('message', e.target.value)}
-                className="w-full px-4 py-3 rounded-lg bg-snow-white border-2 border-secondary-green/20 text-secondary-green placeholder-secondary-green/40 focus:outline-none focus:border-primary-red focus:ring-2 focus:ring-primary-red/20 transition-all resize-none font-inter"
-                placeholder="Write your Christmas message here..."
+                  className="w-full px-4 py-3 rounded-lg bg-snow-white border-2 border-secondary-green/20 text-secondary-green placeholder-secondary-green/40 focus:outline-none focus:border-primary-red focus:ring-2 focus:ring-primary-red/20 transition-all resize-none font-inter"
+                placeholder="Write your New Year message here..."
                 rows={5}
               />
             </div>
@@ -203,7 +203,7 @@ export default function DigitalCardCreator() {
               </div>
 
               <h1 className="text-4xl md:text-6xl font-playfair font-bold mb-8">
-                Merry Christmas!
+                Happy New Year 2026!
               </h1>
 
               <div className="my-8">

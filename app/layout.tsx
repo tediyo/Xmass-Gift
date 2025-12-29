@@ -15,8 +15,8 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: 'Christmas Gift Cards - Spread Holiday Joy',
-  description: 'Create beautiful personalized Christmas gift cards',
+  title: 'New Year 2026 Countdown - Welcome the New Year',
+  description: 'Countdown to New Year 2026 and celebrate the arrival of a brand new year',
 }
 
 export default function RootLayout({

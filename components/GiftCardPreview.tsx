@@ -44,10 +44,10 @@ export default function GiftCardPreview({ data, onBack }: GiftCardPreviewProps) 
       >
         {/* Subtle decorative corner elements */}
         <div className="absolute top-4 right-4 opacity-30">
-          <AccentIcons type="star" size="sm" />
+          <AccentIcons type="sparkle" size="sm" />
         </div>
         <div className="absolute bottom-4 left-4 opacity-30">
-          <AccentIcons type="ornament" size="sm" />
+          <AccentIcons type="fireworks" size="sm" />
         </div>
         {/* Card content */}
         <div className="relative z-10 text-center">
@@ -58,7 +58,7 @@ export default function GiftCardPreview({ data, onBack }: GiftCardPreviewProps) 
               <AccentIcons type="star" size="sm" />
             </div>
             <h1 className="text-4xl md:text-5xl font-playfair font-bold text-secondary-green mb-2">
-              Gift Card
+              New Year Gift Card
             </h1>
             <div className="flex items-center justify-center gap-3 mt-4">
               <AccentIcons type="star" size="sm" />

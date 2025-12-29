@@ -3,8 +3,8 @@
 import { useState } from 'react'
 import GiftCardForm from '@/components/GiftCardForm'
 import GiftCardPreview from '@/components/GiftCardPreview'
-import Snowflakes from '@/components/Snowflakes'
-import ChristmasCountdown from '@/components/ChristmasCountdown'
+import Confetti from '@/components/Confetti'
+import NewYearCountdown from '@/components/NewYearCountdown'
 import GreetingGenerator from '@/components/GreetingGenerator'
 import DigitalCardCreator from '@/components/DigitalCardCreator'
 import HeroIllustration from '@/components/HeroIllustration'
@@ -41,7 +41,7 @@ export default function Home() {
 
   return (
     <main className="min-h-screen relative overflow-hidden bg-snow-white">
-      <Snowflakes />
+      <Confetti />
       
       <div className="relative z-10 container mx-auto px-4 py-12 md:py-16">
         {/* Hero Section */}
@@ -50,12 +50,12 @@ export default function Home() {
           <div className="flex justify-center gap-2 mb-6">
             <AccentIcons type="star" size="sm" />
             <h1 className="text-5xl md:text-7xl font-playfair font-bold text-secondary-green">
-              Merry Christmas
+              New Year 2026
             </h1>
             <AccentIcons type="star" size="sm" />
           </div>
           <p className="text-xl md:text-2xl text-secondary-green/70 font-inter font-light max-w-2xl mx-auto">
-            Create beautiful, personalized holiday experiences
+            Countdown to a brand new year
           </p>
         </div>
 
@@ -95,7 +95,7 @@ export default function Home() {
           )}
 
           {activeTab === 'countdown' && (
-            <ChristmasCountdown />
+            <NewYearCountdown />
           )}
 
           {activeTab === 'greeting' && (
