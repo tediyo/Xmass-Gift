@@ -9,8 +9,10 @@ import GreetingGenerator from '@/components/GreetingGenerator'
 import DigitalCardCreator from '@/components/DigitalCardCreator'
 import HeroIllustration from '@/components/HeroIllustration'
 import AccentIcons from '@/components/AccentIcons'
+import ResolutionTracker from '@/components/ResolutionTracker'
+import NewYearNotification from '@/components/NewYearNotification'
 
-type TabType = 'giftcard' | 'countdown' | 'greeting' | 'digitalcard'
+type TabType = 'giftcard' | 'countdown' | 'greeting' | 'digitalcard' | 'resolutions'
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState<TabType>('giftcard')
@@ -35,6 +37,7 @@ export default function Home() {
   const tabs = [
     { id: 'giftcard' as TabType, label: 'Gift Card' },
     { id: 'countdown' as TabType, label: 'Countdown' },
+    { id: 'resolutions' as TabType, label: 'Resolutions' },
     { id: 'greeting' as TabType, label: 'Greeting' },
     { id: 'digitalcard' as TabType, label: 'Digital Card' },
   ]
@@ -42,6 +45,7 @@ export default function Home() {
   return (
     <main className="min-h-screen relative overflow-hidden bg-snow-white">
       <Confetti />
+      <NewYearNotification />
       
       <div className="relative z-10 container mx-auto px-4 py-12 md:py-16">
         {/* Hero Section */}
@@ -96,6 +100,10 @@ export default function Home() {
 
           {activeTab === 'countdown' && (
             <NewYearCountdown />
+          )}
+
+          {activeTab === 'resolutions' && (
+            <ResolutionTracker />
           )}
 
           {activeTab === 'greeting' && (

@@ -5,18 +5,18 @@ import Image from 'next/image'
 import AccentIcons from './AccentIcons'
 
 const cardTemplates = [
-  { id: 1, name: 'Classic Red', bg: 'bg-primary-red', text: 'text-white' },
-  { id: 2, name: 'Forest Green', bg: 'bg-secondary-green', text: 'text-white' },
-  { id: 3, name: 'Elegant Gold', bg: 'bg-accent-gold', text: 'text-secondary-green' },
-  { id: 4, name: 'Snow White', bg: 'bg-white', text: 'text-secondary-green', border: 'border-2 border-secondary-green/20' },
+  { id: 1, name: 'Classic Red', bg: 'bg-primary-red', text: 'text-white', type: 'color' },
+  { id: 2, name: 'Forest Green', bg: 'bg-secondary-green', text: 'text-white', type: 'color' },
+  { id: 3, name: 'Elegant Gold', bg: 'bg-accent-gold', text: 'text-secondary-green', type: 'color' },
+  { id: 4, name: 'Snow White', bg: 'bg-white', text: 'text-secondary-green', border: 'border-2 border-secondary-green/20', type: 'color' },
 ]
 
-const santaImages = [
-  { id: 1, url: '/oneW.jpg', name: 'Santa 1' },
-  { id: 2, url: '/twoW.jpg', name: 'Santa 2' },
-  { id: 3, url: '/threeW.jpg', name: 'Santa 3' },
-  { id: 4, url: '/fourW.jpg', name: 'Santa 4' },
-  { id: 5, url: '/fiveW.jpg', name: 'Santa 5' },
+const backgroundImages = [
+  { id: 1, url: '/oneW.jpg', name: 'Background 1' },
+  { id: 2, url: '/twoW.jpg', name: 'Background 2' },
+  { id: 3, url: '/threeW.jpg', name: 'Background 3' },
+  { id: 4, url: '/fourW.jpg', name: 'Background 4' },
+  { id: 5, url: '/fiveW.jpg', name: 'Background 5' },
 ]
 
 export default function DigitalCardCreator() {
@@ -25,17 +25,22 @@ export default function DigitalCardCreator() {
     sender: '',
     message: '',
     template: 1,
-    santaImage: santaImages[0].url,
+    backgroundImage: null as string | null,
+    useImageBackground: false,
   })
   const [showPreview, setShowPreview] = useState(false)
   const cardRef = useRef<HTMLDivElement>(null)
 
-  const handleChange = (field: string, value: string | number) => {
+  const handleChange = (field: string, value: string | number | boolean | null) => {
     setCardData(prev => ({ ...prev, [field]: value }))
   }
 
   const handleCreate = () => {
     if (cardData.recipient && cardData.sender && cardData.message) {
+      if (cardData.useImageBackground && !cardData.backgroundImage) {
+        alert('Please select a background image!')
+        return
+      }
       setShowPreview(true)
     } else {
       alert('Please fill in all fields!')
@@ -44,7 +49,133 @@ export default function DigitalCardCreator() {
 
   const handleDownload = () => {
     if (!cardRef.current) return
-    window.print()
+    
+    const card = cardRef.current
+    
+    // Get background color from template
+    const getBgColor = () => {
+      if (cardData.useImageBackground && cardData.backgroundImage) {
+        return ''
+      }
+      if (!selectedTemplate) return '#F9FAF7'
+      
+      const colorMap: Record<number, string> = {
+        1: '#B11226', // primary-red
+        2: '#0F3D2E', // secondary-green
+        3: '#E6B65C', // accent-gold
+        4: '#FFFFFF', // white
+      }
+      return colorMap[selectedTemplate.id] || '#F9FAF7'
+    }
+    
+    const bgImage = cardData.useImageBackground && cardData.backgroundImage
+      ? `url(${cardData.backgroundImage})`
+      : ''
+    const bgColor = getBgColor()
+    const textColor = cardData.useImageBackground && cardData.backgroundImage
+      ? 'white'
+      : (selectedTemplate?.id === 3 || selectedTemplate?.id === 4 ? '#0F3D2E' : 'white')
+    
+    // Create a new window for printing
+    const printWindow = window.open('', '_blank', 'width=800,height=600')
+    
+    if (!printWindow) {
+      // Fallback to regular print if popup is blocked
+      card.scrollIntoView({ behavior: 'instant', block: 'start' })
+      setTimeout(() => {
+        window.print()
+      }, 100)
+      return
+    }
+    
+    // Get the card content HTML
+    const cardContent = card.innerHTML
+    
+    printWindow.document.write(`
+      <!DOCTYPE html>
+      <html>
+        <head>
+          <title>New Year Card 2026</title>
+          <meta charset="utf-8">
+          <style>
+            @page {
+              margin: 0.5cm;
+              size: A4;
+            }
+            * {
+              -webkit-print-color-adjust: exact !important;
+              print-color-adjust: exact !important;
+              color-adjust: exact !important;
+              box-sizing: border-box;
+            }
+            body {
+              margin: 0;
+              padding: 0;
+              font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif;
+              background: white;
+            }
+            #print-card {
+              width: 100%;
+              min-height: 90vh;
+              padding: 2.5cm;
+              margin: 0;
+              ${bgImage ? `background-image: ${bgImage};` : ''}
+              ${bgColor ? `background-color: ${bgColor};` : ''}
+              background-size: cover;
+              background-position: center;
+              background-repeat: no-repeat;
+              color: ${textColor};
+              position: relative;
+            }
+            #print-card > div {
+              position: relative;
+              z-index: 10;
+            }
+            #print-card .absolute {
+              position: absolute;
+            }
+            #print-card h1 {
+              font-size: 3rem;
+              font-weight: bold;
+              margin-bottom: 2rem;
+              ${cardData.useImageBackground && cardData.backgroundImage ? 'text-shadow: 2px 2px 4px rgba(0,0,0,0.5);' : ''}
+            }
+            #print-card p {
+              margin: 0.5rem 0;
+            }
+            @media print {
+              body { 
+                margin: 0; 
+                padding: 0; 
+                background: white;
+              }
+              #print-card { 
+                margin: 0; 
+                padding: 2.5cm;
+                page-break-inside: avoid;
+              }
+            }
+          </style>
+        </head>
+        <body>
+          <div id="print-card">
+            ${cardContent}
+          </div>
+          <script>
+            window.onload = function() {
+              setTimeout(function() {
+                window.print();
+              }, 250);
+            };
+            window.onafterprint = function() {
+              window.close();
+            };
+          </script>
+        </body>
+      </html>
+    `)
+    
+    printWindow.document.close()
   }
 
   const selectedTemplate = cardTemplates.find(t => t.id === cardData.template)
@@ -114,51 +245,93 @@ export default function DigitalCardCreator() {
 
             <div>
               <label className="block text-secondary-green text-sm font-inter font-semibold mb-3 uppercase tracking-wide">
-                Choose Card Template
+                Card Style
               </label>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                {cardTemplates.map((template) => (
+              <div className="mb-4">
+                <div className="flex gap-4 mb-4">
                   <button
-                    key={template.id}
-                    onClick={() => handleChange('template', template.id)}
-                    className={`h-16 rounded-lg transition-all border-2 ${
-                      cardData.template === template.id
-                        ? 'ring-4 ring-accent-gold shadow-soft-lg scale-105 border-l-primary-red border-r-secondary-green'
-                        : 'border-l-secondary-green border-r-primary-red hover-lift'
-                    } ${template.bg} ${template.text} ${template.border || ''}`}
-                  >
-                    <span className="font-inter font-semibold text-sm">{template.name}</span>
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            <div>
-              <label className="block text-secondary-green text-sm font-inter font-semibold mb-3 uppercase tracking-wide">
-                Choose Image
-              </label>
-              <div className="grid grid-cols-3 md:grid-cols-5 gap-3">
-                {santaImages.map((image) => (
-                  <button
-                    key={image.id}
-                    onClick={() => handleChange('santaImage', image.url)}
-                    className={`w-full aspect-square rounded-lg border-2 transition-all overflow-hidden ${
-                      cardData.santaImage === image.url
-                        ? 'border-l-primary-red border-r-secondary-green ring-4 ring-accent-gold/30 shadow-soft-lg scale-105'
-                        : 'border-l-secondary-green border-r-primary-red hover:border-l-primary-red hover:border-r-secondary-green hover-lift'
+                    onClick={() => {
+                      handleChange('useImageBackground', false)
+                      handleChange('backgroundImage', null)
+                    }}
+                    className={`px-6 py-3 rounded-lg font-inter font-semibold transition-all border-2 ${
+                      !cardData.useImageBackground
+                        ? 'bg-primary-red text-white border-l-primary-red border-r-secondary-green shadow-soft-lg'
+                        : 'bg-white text-secondary-green border-l-secondary-green border-r-primary-red hover-lift'
                     }`}
                   >
-                    <Image 
-                      src={image.url} 
-                      alt={image.name}
-                      width={200}
-                      height={200}
-                      className="w-full h-full object-cover"
-                      unoptimized
-                    />
+                    Solid Colors
                   </button>
-                ))}
+                  <button
+                    onClick={() => {
+                      handleChange('useImageBackground', true)
+                      if (!cardData.backgroundImage) {
+                        handleChange('backgroundImage', backgroundImages[0].url)
+                      }
+                    }}
+                    className={`px-6 py-3 rounded-lg font-inter font-semibold transition-all border-2 ${
+                      cardData.useImageBackground
+                        ? 'bg-primary-red text-white border-l-primary-red border-r-secondary-green shadow-soft-lg'
+                        : 'bg-white text-secondary-green border-l-secondary-green border-r-primary-red hover-lift'
+                    }`}
+                  >
+                    Image Background
+                  </button>
+                </div>
               </div>
+
+              {!cardData.useImageBackground ? (
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                  {cardTemplates.map((template) => (
+                    <button
+                      key={template.id}
+                      onClick={() => handleChange('template', template.id)}
+                      className={`h-16 rounded-lg transition-all border-2 ${
+                        cardData.template === template.id
+                          ? 'ring-4 ring-accent-gold shadow-soft-lg scale-105 border-l-primary-red border-r-secondary-green'
+                          : 'border-l-secondary-green border-r-primary-red hover-lift'
+                      } ${template.bg} ${template.text} ${template.border || ''}`}
+                    >
+                      <span className="font-inter font-semibold text-sm">{template.name}</span>
+                    </button>
+                  ))}
+                </div>
+              ) : (
+                <div>
+                  <label className="block text-secondary-green text-sm font-inter font-semibold mb-3 uppercase tracking-wide">
+                    Choose Background Image
+                  </label>
+                  <div className="grid grid-cols-3 md:grid-cols-5 gap-3">
+                    {backgroundImages.map((image) => (
+                      <button
+                        key={image.id}
+                        onClick={() => {
+                          handleChange('backgroundImage', image.url)
+                        }}
+                        className={`w-full aspect-square rounded-lg border-2 transition-all overflow-hidden relative ${
+                          cardData.backgroundImage === image.url
+                            ? 'border-l-primary-red border-r-secondary-green ring-4 ring-accent-gold/30 shadow-soft-lg scale-105'
+                            : 'border-l-secondary-green border-r-primary-red hover:border-l-primary-red hover:border-r-secondary-green hover-lift'
+                        }`}
+                      >
+                        <Image 
+                          src={image.url} 
+                          alt={image.name}
+                          width={200}
+                          height={200}
+                          className="w-full h-full object-cover"
+                          unoptimized
+                        />
+                        {cardData.backgroundImage === image.url && (
+                          <div className="absolute inset-0 bg-primary-red/20 flex items-center justify-center">
+                            <span className="text-white font-bold text-lg">✓</span>
+                          </div>
+                        )}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
 
             <button
@@ -189,40 +362,80 @@ export default function DigitalCardCreator() {
           <div
             ref={cardRef}
             id="printable-digital-card"
-            className={`${selectedTemplate?.bg} ${selectedTemplate?.text} rounded-2xl shadow-soft-lg p-12 border-4 border-t-primary-red border-r-secondary-green border-b-primary-red border-l-secondary-green relative overflow-hidden min-h-[600px]`}
+            className={`${
+              cardData.useImageBackground && cardData.backgroundImage
+                ? ''
+                : `${selectedTemplate?.bg} ${selectedTemplate?.text}`
+            } rounded-2xl shadow-soft-lg p-12 border-4 border-t-primary-red border-r-secondary-green border-b-primary-red border-l-secondary-green relative overflow-hidden min-h-[600px]`}
+            style={
+              cardData.useImageBackground && cardData.backgroundImage
+                ? {
+                    backgroundImage: `url(${cardData.backgroundImage})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    backgroundRepeat: 'no-repeat',
+                  }
+                : undefined
+            }
           >
+            {/* Overlay for better text readability when using image background */}
+            {cardData.useImageBackground && cardData.backgroundImage && (
+              <div className="absolute inset-0 bg-black/40 rounded-2xl" />
+            )}
+            
             <div className="relative z-10 text-center h-full flex flex-col justify-center">
-              <div className="mb-8 flex justify-center animate-gentle-float">
-                <Image 
-                  src={cardData.santaImage} 
-                  alt="Santa" 
-                  width={140}
-                  height={140}
-                  className="w-28 h-28 md:w-36 md:h-36 rounded-full border-4 border-accent-gold/30 shadow-soft object-cover"
-                  unoptimized
-                />
-              </div>
-
-              <h1 className="text-4xl md:text-6xl font-playfair font-bold mb-8">
+              <h1 className={`text-4xl md:text-6xl font-playfair font-bold mb-8 ${
+                cardData.useImageBackground && cardData.backgroundImage
+                  ? 'text-white drop-shadow-lg'
+                  : ''
+              }`}>
                 Happy New Year 2026!
               </h1>
 
               <div className="my-8">
-                <p className="text-sm opacity-70 font-inter uppercase tracking-wide mb-2">To</p>
-                <p className="text-3xl md:text-4xl font-playfair font-bold">
+                <p className={`text-sm font-inter uppercase tracking-wide mb-2 ${
+                  cardData.useImageBackground && cardData.backgroundImage
+                    ? 'text-white/90 drop-shadow'
+                    : 'opacity-70'
+                }`}>
+                  To
+                </p>
+                <p className={`text-3xl md:text-4xl font-playfair font-bold ${
+                  cardData.useImageBackground && cardData.backgroundImage
+                    ? 'text-white drop-shadow-lg'
+                    : ''
+                }`}>
                   {cardData.recipient}
                 </p>
               </div>
 
-              <div className="my-8 bg-white/20 backdrop-blur-sm rounded-xl p-6 mx-auto max-w-xl border border-white/30">
-                <p className="text-lg md:text-xl leading-relaxed whitespace-pre-wrap font-inter">
+              <div className={`my-8 rounded-xl p-6 mx-auto max-w-xl border ${
+                cardData.useImageBackground && cardData.backgroundImage
+                  ? 'bg-white/90 backdrop-blur-sm border-white/50'
+                  : 'bg-white/20 backdrop-blur-sm border-white/30'
+              }`}>
+                <p className={`text-lg md:text-xl leading-relaxed whitespace-pre-wrap font-inter ${
+                  cardData.useImageBackground && cardData.backgroundImage
+                    ? 'text-secondary-green'
+                    : ''
+                }`}>
                   {cardData.message}
                 </p>
               </div>
 
               <div className="mt-12">
-                <p className="text-sm opacity-70 font-inter uppercase tracking-wide mb-2">From</p>
-                <p className="text-2xl md:text-3xl font-playfair font-bold">
+                <p className={`text-sm font-inter uppercase tracking-wide mb-2 ${
+                  cardData.useImageBackground && cardData.backgroundImage
+                    ? 'text-white/90 drop-shadow'
+                    : 'opacity-70'
+                }`}>
+                  From
+                </p>
+                <p className={`text-2xl md:text-3xl font-playfair font-bold ${
+                  cardData.useImageBackground && cardData.backgroundImage
+                    ? 'text-white drop-shadow-lg'
+                    : ''
+                }`}>
                   {cardData.sender}
                 </p>
               </div>
@@ -230,42 +443,6 @@ export default function DigitalCardCreator() {
           </div>
         </div>
       )}
-      
-      <style jsx global>{`
-        @media print {
-          @page {
-            margin: 0.5cm;
-            size: A4;
-          }
-          
-          body * {
-            visibility: hidden;
-          }
-          
-          #printable-digital-card,
-          #printable-digital-card * {
-            visibility: visible;
-          }
-          
-          #printable-digital-card {
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 100%;
-            max-width: 100%;
-            margin: 0;
-            padding: 2cm;
-            box-shadow: none;
-            page-break-after: avoid;
-            page-break-inside: avoid;
-          }
-          
-          button,
-          .mb-6 {
-            display: none !important;
-          }
-        }
-      `}</style>
     </div>
   )
 }

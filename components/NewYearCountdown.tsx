@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import AccentIcons from './AccentIcons'
+import Fireworks from './Fireworks'
 
 type CountdownState = 'counting' | 'celebrating' | 'passed'
 
@@ -15,6 +16,7 @@ export default function NewYearCountdown() {
   })
   const [state, setState] = useState<CountdownState>('counting')
   const [daysPassed, setDaysPassed] = useState(0)
+  const [showFireworks, setShowFireworks] = useState(false)
 
   useEffect(() => {
     const calculateTime = () => {
@@ -25,12 +27,14 @@ export default function NewYearCountdown() {
       // Check if we're on January 1, 2026
       if (now >= newYear2026 && now <= newYear2026End) {
         setState('celebrating')
+        setShowFireworks(true)
         return
       }
       
       // Check if January 1, 2026 has passed
       if (now > newYear2026End) {
         setState('passed')
+        setShowFireworks(false)
         const difference = now.getTime() - newYear2026.getTime()
         const days = Math.floor(difference / (1000 * 60 * 60 * 24))
         setDaysPassed(days)
@@ -39,7 +43,13 @@ export default function NewYearCountdown() {
       
       // Countdown to January 1, 2026
       setState('counting')
+      setShowFireworks(false)
       const difference = newYear2026.getTime() - now.getTime()
+      
+      // Show fireworks when countdown reaches zero (within last 5 seconds)
+      if (difference <= 5000 && difference > 0) {
+        setShowFireworks(true)
+      }
       
       if (difference > 0) {
         setTimeLeft({
@@ -57,9 +67,9 @@ export default function NewYearCountdown() {
     return () => clearInterval(interval)
   }, [])
 
-  const TimeBox = ({ value, label }: { value: number; label: string }) => (
-    <div className="flex flex-col items-center justify-center bg-white rounded-xl shadow-soft p-6 md:p-8 border-2 border-l-primary-red border-r-secondary-green hover-lift transition-all duration-300">
-      <div className="text-5xl md:text-7xl font-playfair font-bold text-primary-red mb-2">
+  const TimeBox = ({ value, label, isGlowing }: { value: number; label: string; isGlowing?: boolean }) => (
+    <div className={`flex flex-col items-center justify-center bg-white rounded-xl shadow-soft p-6 md:p-8 border-2 border-l-primary-red border-r-secondary-green hover-lift transition-all duration-300 ${isGlowing ? 'glowing-number' : ''}`}>
+      <div className={`text-5xl md:text-7xl font-playfair font-bold text-primary-red mb-2 ${isGlowing ? 'animate-pulse' : ''}`}>
         {String(value).padStart(2, '0')}
       </div>
       <div className="text-sm md:text-base font-inter font-semibold text-secondary-green uppercase tracking-wider">
@@ -71,11 +81,12 @@ export default function NewYearCountdown() {
   // Celebration mode - January 1, 2026
   if (state === 'celebrating') {
     return (
-      <div className="w-full fade-in">
-        <div className="text-center mb-12">
+      <div className="w-full fade-in relative">
+        <Fireworks active={showFireworks} />
+        <div className="text-center mb-12 relative z-10">
           <div className="flex items-center justify-center gap-3 mb-4">
             <span className="text-4xl animate-bounce">🎉</span>
-            <h2 className="text-4xl md:text-6xl font-playfair font-bold text-primary-red">
+            <h2 className="text-4xl md:text-6xl font-playfair font-bold text-primary-red glowing-text">
               Happy New Year 2026!
             </h2>
             <span className="text-4xl animate-bounce">🎊</span>
@@ -85,7 +96,7 @@ export default function NewYearCountdown() {
           </p>
         </div>
 
-        <div className="bg-white rounded-2xl shadow-soft-lg p-12 border-4 border-t-primary-red border-r-secondary-green border-b-primary-red border-l-secondary-green mb-8">
+        <div className="bg-white rounded-2xl shadow-soft-lg p-12 border-4 border-t-primary-red border-r-secondary-green border-b-primary-red border-l-secondary-green mb-8 relative z-10">
           <div className="text-center">
             <div className="flex justify-center gap-4 mb-8 flex-wrap text-6xl md:text-8xl">
               <span className="animate-bounce" style={{ animationDelay: '0s' }}>🎉</span>
@@ -97,7 +108,7 @@ export default function NewYearCountdown() {
               <span className="animate-bounce" style={{ animationDelay: '1.2s' }}>🥳</span>
               <span className="animate-bounce" style={{ animationDelay: '1.4s' }}>🎁</span>
             </div>
-            <h3 className="text-3xl md:text-5xl font-playfair font-bold text-secondary-green mb-4">
+            <h3 className="text-3xl md:text-5xl font-playfair font-bold text-secondary-green mb-4 glowing-text">
               It's January 1, 2026!
             </h3>
             <p className="text-xl md:text-2xl text-secondary-green/70 font-inter">
@@ -188,11 +199,14 @@ export default function NewYearCountdown() {
         </p>
       </div>
 
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 max-w-4xl mx-auto mb-12">
-        <TimeBox value={timeLeft.days} label="Days" />
-        <TimeBox value={timeLeft.hours} label="Hours" />
-        <TimeBox value={timeLeft.minutes} label="Minutes" />
-        <TimeBox value={timeLeft.seconds} label="Seconds" />
+      <div className="relative z-10">
+        <Fireworks active={showFireworks} />
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 max-w-4xl mx-auto mb-12">
+          <TimeBox value={timeLeft.days} label="Days" isGlowing={showFireworks && timeLeft.days === 0} />
+          <TimeBox value={timeLeft.hours} label="Hours" isGlowing={showFireworks && timeLeft.hours === 0} />
+          <TimeBox value={timeLeft.minutes} label="Minutes" isGlowing={showFireworks && timeLeft.minutes === 0} />
+          <TimeBox value={timeLeft.seconds} label="Seconds" isGlowing={showFireworks} />
+        </div>
       </div>
 
       <div className="text-center">
