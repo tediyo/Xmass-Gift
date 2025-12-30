@@ -8,7 +8,7 @@ const cardTemplates = [
   { id: 1, name: 'Classic Red', bg: 'bg-primary-red', text: 'text-white', type: 'color' },
   { id: 2, name: 'Forest Green', bg: 'bg-secondary-green', text: 'text-white', type: 'color' },
   { id: 3, name: 'Elegant Gold', bg: 'bg-accent-gold', text: 'text-secondary-green', type: 'color' },
-  { id: 4, name: 'Snow White', bg: 'bg-white', text: 'text-secondary-green', border: 'border-2 border-secondary-green/20', type: 'color' },
+  { id: 4, name: 'Snow White', bg: 'bg-white', text: 'text-secondary-green', border: 'border-2 border-primary-red/20', type: 'color' },
 ]
 
 const backgroundImages = [
@@ -196,7 +196,7 @@ export default function DigitalCardCreator() {
       </div>
 
       {!showPreview ? (
-        <div className="bg-white rounded-2xl shadow-soft-lg p-8 md:p-12 border-4 border-t-primary-red border-r-secondary-green border-b-primary-red border-l-secondary-green relative">
+        <div className="bg-white rounded-2xl shadow-soft-lg p-8 md:p-12 border-4 border-t-primary-red border-r-primary-red border-b-primary-red border-l-primary-red relative">
           {/* Subtle decorative element */}
           <div className="absolute top-6 left-6 opacity-20">
             <AccentIcons type="party" size="md" />
@@ -211,7 +211,7 @@ export default function DigitalCardCreator() {
                   type="text"
                   value={cardData.recipient}
                   onChange={(e) => handleChange('recipient', e.target.value)}
-                  className="w-full px-4 py-3 rounded-lg bg-snow-white border-2 border-l-primary-red border-r-secondary-green text-secondary-green placeholder-secondary-green/40 focus:outline-none focus:border-l-secondary-green focus:border-r-primary-red focus:ring-2 focus:ring-primary-red/20 transition-all font-inter"
+                  className="w-full px-4 py-3 rounded-lg bg-snow-white border-2 border-l-primary-red border-r-primary-red text-secondary-green placeholder-secondary-green/40 focus:outline-none focus:border-l-primary-red focus:border-r-primary-red focus:ring-2 focus:ring-primary-red/20 transition-all font-inter"
                   placeholder="Recipient name"
                 />
               </div>
@@ -224,7 +224,7 @@ export default function DigitalCardCreator() {
                   type="text"
                   value={cardData.sender}
                   onChange={(e) => handleChange('sender', e.target.value)}
-                  className="w-full px-4 py-3 rounded-lg bg-snow-white border-2 border-l-primary-red border-r-secondary-green text-secondary-green placeholder-secondary-green/40 focus:outline-none focus:border-l-secondary-green focus:border-r-primary-red focus:ring-2 focus:ring-primary-red/20 transition-all font-inter"
+                  className="w-full px-4 py-3 rounded-lg bg-snow-white border-2 border-l-primary-red border-r-primary-red text-secondary-green placeholder-secondary-green/40 focus:outline-none focus:border-l-primary-red focus:border-r-primary-red focus:ring-2 focus:ring-primary-red/20 transition-all font-inter"
                   placeholder="Your name"
                 />
               </div>
@@ -237,7 +237,7 @@ export default function DigitalCardCreator() {
               <textarea
                 value={cardData.message}
                 onChange={(e) => handleChange('message', e.target.value)}
-                  className="w-full px-4 py-3 rounded-lg bg-snow-white border-2 border-l-primary-red border-r-secondary-green text-secondary-green placeholder-secondary-green/40 focus:outline-none focus:border-l-secondary-green focus:border-r-primary-red focus:ring-2 focus:ring-primary-red/20 transition-all resize-none font-inter"
+                  className="w-full px-4 py-3 rounded-lg bg-snow-white border-2 border-l-primary-red border-r-primary-red text-secondary-green placeholder-secondary-green/40 focus:outline-none focus:border-l-primary-red focus:border-r-primary-red focus:ring-2 focus:ring-primary-red/20 transition-all resize-none font-inter"
                 placeholder="Write your New Year message here..."
                 rows={5}
               />
@@ -256,8 +256,8 @@ export default function DigitalCardCreator() {
                     }}
                     className={`px-6 py-3 rounded-lg font-inter font-semibold transition-all border-2 ${
                       !cardData.useImageBackground
-                        ? 'bg-primary-red text-white border-l-primary-red border-r-secondary-green shadow-soft-lg'
-                        : 'bg-white text-secondary-green border-l-secondary-green border-r-primary-red hover-lift'
+                        ? 'bg-primary-red text-white border-l-primary-red border-r-primary-red shadow-soft-lg'
+                        : 'bg-white text-secondary-green border-l-primary-red border-r-primary-red hover-lift'
                     }`}
                   >
                     Solid Colors
@@ -271,8 +271,8 @@ export default function DigitalCardCreator() {
                     }}
                     className={`px-6 py-3 rounded-lg font-inter font-semibold transition-all border-2 ${
                       cardData.useImageBackground
-                        ? 'bg-primary-red text-white border-l-primary-red border-r-secondary-green shadow-soft-lg'
-                        : 'bg-white text-secondary-green border-l-secondary-green border-r-primary-red hover-lift'
+                        ? 'bg-primary-red text-white border-l-primary-red border-r-primary-red shadow-soft-lg'
+                        : 'bg-white text-secondary-green border-l-primary-red border-r-primary-red hover-lift'
                     }`}
                   >
                     Image Background
@@ -288,8 +288,8 @@ export default function DigitalCardCreator() {
                       onClick={() => handleChange('template', template.id)}
                       className={`h-16 rounded-lg transition-all border-2 ${
                         cardData.template === template.id
-                          ? 'ring-4 ring-accent-gold shadow-soft-lg scale-105 border-l-primary-red border-r-secondary-green'
-                          : 'border-l-secondary-green border-r-primary-red hover-lift'
+                          ? 'ring-4 ring-accent-gold shadow-soft-lg scale-105 border-l-primary-red border-r-primary-red'
+                          : 'border-l-primary-red border-r-primary-red hover-lift'
                       } ${template.bg} ${template.text} ${template.border || ''}`}
                     >
                       <span className="font-inter font-semibold text-sm">{template.name}</span>
@@ -310,8 +310,8 @@ export default function DigitalCardCreator() {
                         }}
                         className={`w-full aspect-square rounded-lg border-2 transition-all overflow-hidden relative ${
                           cardData.backgroundImage === image.url
-                            ? 'border-l-primary-red border-r-secondary-green ring-4 ring-accent-gold/30 shadow-soft-lg scale-105'
-                            : 'border-l-secondary-green border-r-primary-red hover:border-l-primary-red hover:border-r-secondary-green hover-lift'
+                            ? 'border-l-primary-red border-r-primary-red ring-4 ring-accent-gold/30 shadow-soft-lg scale-105'
+                            : 'border-l-primary-red border-r-primary-red hover:border-l-primary-red hover:border-r-primary-red hover-lift'
                         }`}
                       >
                         <Image 
@@ -347,7 +347,7 @@ export default function DigitalCardCreator() {
           <div className="mb-6 flex gap-4 justify-center no-print">
             <button
               onClick={() => setShowPreview(false)}
-              className="px-6 py-3 bg-white text-secondary-green font-inter font-semibold rounded-lg border-2 border-l-primary-red border-r-secondary-green hover:border-l-secondary-green hover:border-r-primary-red hover-lift transition-all"
+              className="px-6 py-3 bg-white text-secondary-green font-inter font-semibold rounded-lg border-2 border-l-primary-red border-r-primary-red hover:border-l-primary-red hover:border-r-primary-red hover-lift transition-all"
             >
               ← Edit Card
             </button>
@@ -366,7 +366,7 @@ export default function DigitalCardCreator() {
               cardData.useImageBackground && cardData.backgroundImage
                 ? ''
                 : `${selectedTemplate?.bg} ${selectedTemplate?.text}`
-            } rounded-2xl shadow-soft-lg p-12 border-4 border-t-primary-red border-r-secondary-green border-b-primary-red border-l-secondary-green relative overflow-hidden min-h-[600px]`}
+            } rounded-2xl shadow-soft-lg p-12 border-4 border-t-primary-red border-r-primary-red border-b-primary-red border-l-primary-red relative overflow-hidden min-h-[600px]`}
             style={
               cardData.useImageBackground && cardData.backgroundImage
                 ? {

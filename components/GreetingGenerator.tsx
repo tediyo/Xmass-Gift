@@ -85,7 +85,7 @@ export default function GreetingGenerator() {
         </p>
       </div>
 
-      <div className="bg-white rounded-2xl shadow-soft-lg p-8 md:p-12 border-4 border-t-secondary-green border-r-primary-red border-b-secondary-green border-l-primary-red relative">
+      <div className="bg-white rounded-2xl shadow-soft-lg p-8 md:p-12 border-4 border-t-primary-red border-r-primary-red border-b-primary-red border-l-primary-red relative">
         {/* Subtle decorative element */}
         <div className="absolute top-6 right-6 opacity-20">
           <AccentIcons type="champagne" size="md" />
@@ -99,7 +99,7 @@ export default function GreetingGenerator() {
               type="text"
               value={customName}
               onChange={(e) => setCustomName(e.target.value)}
-              className="w-full px-4 py-3 rounded-lg bg-snow-white border-2 border-l-secondary-green border-r-primary-red text-secondary-green placeholder-secondary-green/40 focus:outline-none focus:border-l-primary-red focus:border-r-secondary-green focus:ring-2 focus:ring-primary-red/20 transition-all font-inter"
+              className="w-full px-4 py-3 rounded-lg bg-snow-white border-2 border-l-primary-red border-r-primary-red text-secondary-green placeholder-secondary-green/40 focus:outline-none focus:border-l-primary-red focus:border-r-primary-red focus:ring-2 focus:ring-primary-red/20 transition-all font-inter"
               placeholder="Enter name (e.g., John, Family, Friends)"
             />
           </div>
@@ -118,8 +118,8 @@ export default function GreetingGenerator() {
                   }}
                   className={`px-4 py-3 rounded-lg font-inter font-semibold transition-all duration-300 ${
                     selectedCategory === category.category
-                      ? 'bg-primary-red text-white shadow-soft border-2 border-secondary-green'
-                      : 'bg-snow-white text-secondary-green border-2 border-l-primary-red border-r-secondary-green hover:border-l-secondary-green hover:border-r-primary-red hover-lift'
+                      ? 'bg-primary-red text-white shadow-soft border-2 border-primary-red'
+                      : 'bg-snow-white text-secondary-green border-2 border-l-primary-red border-r-primary-red hover:border-l-primary-red hover:border-r-primary-red hover-lift'
                   }`}
                 >
                   {category.category}
@@ -136,7 +136,7 @@ export default function GreetingGenerator() {
           </button>
 
           {showPreview && selectedGreeting && (
-            <div className="mt-8 bg-secondary-green/5 rounded-xl p-8 border border-secondary-green/10 fade-in">
+            <div className="mt-8 bg-secondary-green/5 rounded-xl p-8 border border-primary-red/10 fade-in">
               <div className="text-center">
                 <div className="flex justify-center mb-6">
                   <Image 

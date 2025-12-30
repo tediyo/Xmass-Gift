@@ -111,7 +111,7 @@ export default function ResolutionTracker() {
 
       {/* Progress Bar */}
       {totalCount > 0 && (
-        <div className="bg-white rounded-xl shadow-soft p-6 mb-8 border-2 border-l-primary-red border-r-secondary-green">
+        <div className="bg-white rounded-xl shadow-soft p-6 mb-8 border-2 border-l-primary-red border-r-primary-red">
           <div className="flex justify-between items-center mb-3">
             <span className="text-lg font-inter font-semibold text-secondary-green">
               Progress
@@ -133,7 +133,7 @@ export default function ResolutionTracker() {
       )}
 
       {/* Add New Resolution Form */}
-      <div className="bg-white rounded-xl shadow-soft p-6 mb-8 border-2 border-l-primary-red border-r-secondary-green">
+      <div className="bg-white rounded-xl shadow-soft p-6 mb-8 border-2 border-l-primary-red border-r-primary-red">
         <h3 className="text-2xl font-playfair font-bold text-secondary-green mb-4">
           Add New Resolution
         </h3>
@@ -169,7 +169,7 @@ export default function ResolutionTracker() {
                 onChange={(e) => setNewResolution(e.target.value)}
                 onKeyPress={(e) => e.key === 'Enter' && addResolution()}
                 placeholder="e.g., Learn a new programming language"
-                className="flex-1 px-4 py-3 rounded-lg border-2 border-secondary-green/20 focus:border-primary-red focus:outline-none font-inter text-secondary-green"
+                className="flex-1 px-4 py-3 rounded-lg border-2 border-primary-red/20 focus:border-primary-red focus:outline-none font-inter text-secondary-green"
               />
               <button
                 onClick={addResolution}
@@ -185,7 +185,7 @@ export default function ResolutionTracker() {
       {/* Resolutions List */}
       <div className="space-y-4">
         {resolutions.length === 0 ? (
-          <div className="bg-white rounded-xl shadow-soft p-12 text-center border-2 border-l-primary-red border-r-secondary-green">
+          <div className="bg-white rounded-xl shadow-soft p-12 text-center border-2 border-l-primary-red border-r-primary-red">
             <p className="text-xl text-secondary-green/70 font-inter">
               No resolutions yet. Add your first resolution above! 🎯
             </p>
@@ -196,8 +196,8 @@ export default function ResolutionTracker() {
               key={resolution.id}
               className={`bg-white rounded-xl shadow-soft p-6 border-2 transition-all duration-300 ${
                 resolution.completed
-                  ? 'border-l-secondary-green border-r-secondary-green opacity-75'
-                  : 'border-l-primary-red border-r-secondary-green hover-lift'
+                  ? 'border-l-primary-red border-r-primary-red opacity-75'
+                  : 'border-l-primary-red border-r-primary-red hover-lift'
               }`}
             >
               <div className="flex items-start gap-4">
