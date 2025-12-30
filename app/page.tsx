@@ -27,34 +27,34 @@ export default function Home() {
       <Confetti />
       <NewYearNotification />
       
-      <div className="relative z-10 container mx-auto px-4 py-12 md:py-16">
+      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 md:py-16">
         {/* Hero Section */}
-        <div className="text-center mb-12 md:mb-16 fade-in">
+        <div className="text-center mb-8 sm:mb-12 md:mb-16 fade-in">
           <HeroIllustration />
-          <div className="flex justify-center gap-2 mb-6">
+          <div className="flex justify-center items-center gap-1 sm:gap-2 mb-4 sm:mb-6">
             <AccentIcons type="star" size="sm" />
-            <h1 className="text-5xl md:text-7xl font-playfair font-bold text-secondary-green">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-playfair font-bold text-secondary-green px-2">
               New Year 2026
             </h1>
             <AccentIcons type="star" size="sm" />
           </div>
-          <p className="text-xl md:text-2xl text-secondary-green/70 font-inter font-light max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-secondary-green/70 font-inter font-light max-w-2xl mx-auto px-4">
             Countdown to a brand new year
           </p>
         </div>
 
-        {/* Navigation Tabs */}
-        <div className="flex flex-wrap justify-center gap-3 md:gap-4 mb-12 md:mb-16">
+        {/* Navigation Tabs - Mobile-first responsive */}
+        <div className="flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-4 mb-8 sm:mb-12 md:mb-16">
           {tabs.map((tab) => (
             <button
               key={tab.id}
               onClick={() => {
                 setActiveTab(tab.id)
               }}
-              className={`px-6 md:px-8 py-3 rounded-full font-inter text-base md:text-lg transition-all duration-300 ${
+              className={`min-h-[44px] px-4 sm:px-6 md:px-8 py-2.5 sm:py-3 rounded-full font-inter text-sm sm:text-base md:text-lg transition-all duration-300 touch-manipulation ${
                 activeTab === tab.id
                   ? 'bg-primary-red text-white shadow-soft-lg border-2 border-primary-red'
-                  : 'bg-white text-secondary-green border-2 border-l-primary-red border-r-primary-red hover:border-l-primary-red hover:border-r-primary-red hover-lift'
+                  : 'bg-white text-secondary-green border-2 border-l-primary-red border-r-primary-red active:bg-primary-red/10 hover-lift'
               }`}
             >
               {tab.label}
@@ -62,8 +62,8 @@ export default function Home() {
           ))}
         </div>
 
-        {/* Content Area */}
-        <div className="max-w-4xl mx-auto fade-in">
+        {/* Content Area - Mobile-first responsive */}
+        <div className="w-full max-w-4xl mx-auto fade-in px-2 sm:px-4">
           {activeTab === 'countdown' && (
             <NewYearCountdown />
           )}

@@ -68,11 +68,11 @@ export default function NewYearCountdown() {
   }, [])
 
   const TimeBox = ({ value, label, isGlowing }: { value: number; label: string; isGlowing?: boolean }) => (
-    <div className={`flex flex-col items-center justify-center bg-white rounded-xl shadow-soft p-6 md:p-8 border-2 border-l-primary-red border-r-primary-red hover-lift transition-all duration-300 ${isGlowing ? 'glowing-number' : ''}`}>
-      <div className={`text-5xl md:text-7xl font-playfair font-bold text-primary-red mb-2 ${isGlowing ? 'animate-pulse' : ''}`}>
+    <div className={`flex flex-col items-center justify-center bg-white rounded-lg sm:rounded-xl shadow-soft p-4 sm:p-5 md:p-6 lg:p-8 border-2 border-l-primary-red border-r-primary-red hover-lift transition-all duration-300 ${isGlowing ? 'glowing-number' : ''}`}>
+      <div className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-playfair font-bold text-primary-red mb-1 sm:mb-2 leading-none ${isGlowing ? 'animate-pulse' : ''}`}>
         {String(value).padStart(2, '0')}
       </div>
-      <div className="text-sm md:text-base font-inter font-semibold text-secondary-green uppercase tracking-wider">
+      <div className="text-xs sm:text-sm md:text-base font-inter font-semibold text-secondary-green uppercase tracking-wider">
         {label}
       </div>
     </div>
@@ -83,22 +83,22 @@ export default function NewYearCountdown() {
     return (
       <div className="w-full fade-in relative">
         <Fireworks active={showFireworks} />
-        <div className="text-center mb-12 relative z-10">
-          <div className="flex items-center justify-center gap-3 mb-4">
-            <span className="text-4xl animate-bounce">🎉</span>
-            <h2 className="text-4xl md:text-6xl font-playfair font-bold text-primary-red glowing-text">
+        <div className="text-center mb-8 sm:mb-12 relative z-10">
+          <div className="flex items-center justify-center gap-2 sm:gap-3 mb-3 sm:mb-4 flex-wrap">
+            <span className="text-2xl sm:text-3xl md:text-4xl animate-bounce">🎉</span>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-playfair font-bold text-primary-red glowing-text px-2">
               Happy New Year 2026!
             </h2>
-            <span className="text-4xl animate-bounce">🎊</span>
+            <span className="text-2xl sm:text-3xl md:text-4xl animate-bounce">🎊</span>
           </div>
-          <p className="text-lg md:text-xl text-secondary-green/70 font-inter">
+          <p className="text-base sm:text-lg md:text-xl text-secondary-green/70 font-inter px-4">
             Welcome to a brand new year!
           </p>
         </div>
 
-        <div className="bg-white rounded-2xl shadow-soft-lg p-12 border-4 border-t-primary-red border-r-primary-red border-b-primary-red border-l-primary-red mb-8 relative z-10">
+        <div className="bg-white rounded-xl sm:rounded-2xl shadow-soft-lg p-6 sm:p-8 md:p-12 border-4 border-t-primary-red border-r-primary-red border-b-primary-red border-l-primary-red mb-6 sm:mb-8 relative z-10">
           <div className="text-center">
-            <div className="flex justify-center gap-4 mb-8 flex-wrap text-6xl md:text-8xl">
+            <div className="flex justify-center gap-2 sm:gap-3 md:gap-4 mb-6 sm:mb-8 flex-wrap text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-8xl">
               <span className="animate-bounce" style={{ animationDelay: '0s' }}>🎉</span>
               <span className="animate-bounce" style={{ animationDelay: '0.2s' }}>🎊</span>
               <span className="animate-bounce" style={{ animationDelay: '0.4s' }}>✨</span>
@@ -108,10 +108,10 @@ export default function NewYearCountdown() {
               <span className="animate-bounce" style={{ animationDelay: '1.2s' }}>🥳</span>
               <span className="animate-bounce" style={{ animationDelay: '1.4s' }}>🎁</span>
             </div>
-            <h3 className="text-3xl md:text-5xl font-playfair font-bold text-secondary-green mb-4 glowing-text">
+            <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-playfair font-bold text-secondary-green mb-3 sm:mb-4 glowing-text px-2">
               It's January 1, 2026!
             </h3>
-            <p className="text-xl md:text-2xl text-secondary-green/70 font-inter">
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-secondary-green/70 font-inter px-2">
               Celebrate this special day! 🎊
             </p>
           </div>
@@ -137,28 +137,28 @@ export default function NewYearCountdown() {
   if (state === 'passed') {
     return (
       <div className="w-full fade-in">
-        <div className="text-center mb-12">
-        <div className="flex items-center justify-center gap-3 mb-4">
+        <div className="text-center mb-8 sm:mb-12">
+        <div className="flex items-center justify-center gap-2 sm:gap-3 mb-3 sm:mb-4 flex-wrap">
           <AccentIcons type="sparkle" size="md" />
-          <h2 className="text-4xl md:text-6xl font-playfair font-bold text-secondary-green">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-playfair font-bold text-secondary-green px-2">
             Days Since New Year 2026
           </h2>
           <AccentIcons type="sparkle" size="md" />
         </div>
-          <p className="text-lg md:text-xl text-secondary-green/70 font-inter">
+          <p className="text-base sm:text-lg md:text-xl text-secondary-green/70 font-inter px-4">
             Time since we welcomed 2026
           </p>
         </div>
 
-        <div className="bg-white rounded-2xl shadow-soft-lg p-12 border-4 border-t-primary-red border-r-primary-red border-b-primary-red border-l-primary-red mb-8">
+        <div className="bg-white rounded-xl sm:rounded-2xl shadow-soft-lg p-6 sm:p-8 md:p-12 border-4 border-t-primary-red border-r-primary-red border-b-primary-red border-l-primary-red mb-6 sm:mb-8">
           <div className="text-center">
-            <div className="text-7xl md:text-9xl font-playfair font-bold text-primary-red mb-4">
+            <div className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-playfair font-bold text-primary-red mb-3 sm:mb-4 leading-none">
               {daysPassed}
             </div>
-            <div className="text-2xl md:text-3xl font-inter font-semibold text-secondary-green uppercase tracking-wider mb-6">
+            <div className="text-xl sm:text-2xl md:text-3xl font-inter font-semibold text-secondary-green uppercase tracking-wider mb-4 sm:mb-6">
               Days Passed
             </div>
-            <p className="text-lg md:text-xl text-secondary-green/70 font-inter">
+            <p className="text-base sm:text-lg md:text-xl text-secondary-green/70 font-inter px-2">
               {daysPassed === 1 ? 'One day has passed' : `${daysPassed} days have passed`} since January 1, 2026
             </p>
           </div>
@@ -186,22 +186,22 @@ export default function NewYearCountdown() {
   // Countdown mode - Before January 1, 2026
   return (
     <div className="w-full fade-in">
-      <div className="text-center mb-12">
-        <div className="flex items-center justify-center gap-3 mb-4">
+      <div className="text-center mb-8 sm:mb-12">
+        <div className="flex items-center justify-center gap-2 sm:gap-3 mb-3 sm:mb-4 flex-wrap">
           <AccentIcons type="clock" size="md" />
-          <h2 className="text-4xl md:text-6xl font-playfair font-bold text-secondary-green">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-playfair font-bold text-secondary-green px-2">
             Countdown to New Year 2026
           </h2>
           <AccentIcons type="clock" size="md" />
         </div>
-        <p className="text-lg md:text-xl text-secondary-green/70 font-inter">
+        <p className="text-base sm:text-lg md:text-xl text-secondary-green/70 font-inter px-4">
           Time until January 1, 2026
         </p>
       </div>
 
       <div className="relative z-10">
         <Fireworks active={showFireworks} />
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 max-w-4xl mx-auto mb-12">
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 md:gap-6 max-w-4xl mx-auto mb-8 sm:mb-12">
           <TimeBox value={timeLeft.days} label="Days" isGlowing={showFireworks && timeLeft.days === 0} />
           <TimeBox value={timeLeft.hours} label="Hours" isGlowing={showFireworks && timeLeft.hours === 0} />
           <TimeBox value={timeLeft.minutes} label="Minutes" isGlowing={showFireworks && timeLeft.minutes === 0} />
