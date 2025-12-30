@@ -22,10 +22,10 @@ export default function GiftCardPreview({ data, onBack }: GiftCardPreviewProps) 
 
   return (
     <div className="max-w-2xl mx-auto fade-in">
-      <div className="mb-6 flex gap-4 justify-center">
+      <div className="mb-6 flex gap-4 justify-center no-print">
         <button
           onClick={onBack}
-          className="px-6 py-3 bg-white text-secondary-green font-inter font-semibold rounded-lg border-2 border-secondary-green/20 hover:border-secondary-green/40 hover-lift transition-all"
+          className="px-6 py-3 bg-white text-secondary-green font-inter font-semibold rounded-lg border-2 border-l-primary-red border-r-secondary-green hover:border-l-secondary-green hover:border-r-primary-red hover-lift transition-all"
         >
           ← Edit Card
         </button>
@@ -39,15 +39,16 @@ export default function GiftCardPreview({ data, onBack }: GiftCardPreviewProps) 
 
       <div
         ref={cardRef}
-        className="bg-white rounded-2xl shadow-soft-lg p-12 border border-secondary-green/10 relative overflow-hidden print:shadow-none"
+        id="printable-card"
+        className="bg-white rounded-2xl shadow-soft-lg p-12 border-4 border-t-primary-red border-r-secondary-green border-b-primary-red border-l-secondary-green relative overflow-hidden"
         style={{ minHeight: '500px' }}
       >
         {/* Subtle decorative corner elements */}
         <div className="absolute top-4 right-4 opacity-30">
-          <AccentIcons type="star" size="sm" />
+          <AccentIcons type="sparkle" size="sm" />
         </div>
         <div className="absolute bottom-4 left-4 opacity-30">
-          <AccentIcons type="ornament" size="sm" />
+          <AccentIcons type="fireworks" size="sm" />
         </div>
         {/* Card content */}
         <div className="relative z-10 text-center">
@@ -58,7 +59,7 @@ export default function GiftCardPreview({ data, onBack }: GiftCardPreviewProps) 
               <AccentIcons type="star" size="sm" />
             </div>
             <h1 className="text-4xl md:text-5xl font-playfair font-bold text-secondary-green mb-2">
-              Gift Card
+              New Year Gift Card
             </h1>
             <div className="flex items-center justify-center gap-3 mt-4">
               <AccentIcons type="star" size="sm" />
@@ -74,14 +75,14 @@ export default function GiftCardPreview({ data, onBack }: GiftCardPreviewProps) 
             </p>
           </div>
 
-          <div className="my-10 bg-secondary-green/5 rounded-xl p-8 mx-auto max-w-md border border-secondary-green/10">
+          <div className="my-10 bg-secondary-green/5 rounded-xl p-8 mx-auto max-w-md border-2 border-l-primary-red border-r-secondary-green">
             <p className="text-xs text-secondary-green/60 font-inter uppercase tracking-wide mb-2">Gift Amount</p>
             <p className="text-5xl md:text-6xl font-playfair font-bold text-primary-red">
               ${parseFloat(data.amount || '0').toFixed(2)}
             </p>
           </div>
 
-          <div className="my-8 bg-snow-white rounded-xl p-6 mx-auto max-w-lg border border-secondary-green/10">
+          <div className="my-8 bg-snow-white rounded-xl p-6 mx-auto max-w-lg border-2 border-l-secondary-green border-r-primary-red">
             <p className="text-secondary-green text-lg leading-relaxed whitespace-pre-wrap font-inter">
               {data.message}
             </p>
@@ -98,18 +99,36 @@ export default function GiftCardPreview({ data, onBack }: GiftCardPreviewProps) 
 
       <style jsx global>{`
         @media print {
+          @page {
+            margin: 0.5cm;
+            size: A4;
+          }
+          
           body * {
             visibility: hidden;
           }
-          .print\\:shadow-none,
-          .print\\:shadow-none * {
+          
+          #printable-card,
+          #printable-card * {
             visibility: visible;
           }
-          .print\\:shadow-none {
+          
+          #printable-card {
             position: absolute;
             left: 0;
             top: 0;
             width: 100%;
+            max-width: 100%;
+            margin: 0;
+            padding: 2cm;
+            box-shadow: none;
+            page-break-after: avoid;
+            page-break-inside: avoid;
+          }
+          
+          button,
+          .mb-6 {
+            display: none !important;
           }
         }
       `}</style>

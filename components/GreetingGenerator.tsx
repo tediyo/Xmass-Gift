@@ -8,37 +8,37 @@ const greetingTemplates = [
   {
     category: 'Classic',
     greetings: [
-      'Merry Christmas and a Happy New Year!',
-      'Wishing you joy, peace, and love this Christmas!',
-      'May your Christmas be filled with warmth and happiness!',
-      'Sending you warm Christmas wishes and holiday cheer!',
+      'Happy New Year 2026! Wishing you joy and prosperity!',
+      'Wishing you a wonderful and prosperous New Year 2026!',
+      'May the New Year bring you happiness, health, and success!',
+      'Sending you warm wishes for a fantastic New Year 2026!',
     ],
   },
   {
     category: 'Funny',
     greetings: [
-      'Hope your Christmas is as sweet as Santa\'s cookies!',
-      'May your Christmas be merry and your WiFi strong!',
-      'Wishing you a Christmas that\'s as awesome as you are!',
-      'Hope Santa brings you everything you asked for... and more!',
+      'Hope your New Year is as bright as fireworks!',
+      'May your New Year be merry and your resolutions achievable!',
+      'Wishing you a New Year that\'s as awesome as you are!',
+      'Hope 2026 brings you everything you wished for... and more!',
     ],
   },
   {
     category: 'Heartfelt',
     greetings: [
-      'May the magic of Christmas fill your heart with joy!',
-      'Wishing you and your family a Christmas filled with love!',
-      'May this Christmas bring you closer to those you love!',
-      'Sending you love, peace, and happiness this Christmas!',
+      'May the New Year fill your heart with joy and new beginnings!',
+      'Wishing you and your family a New Year filled with love and happiness!',
+      'May this New Year bring you closer to your dreams and goals!',
+      'Sending you love, peace, and endless possibilities for 2026!',
     ],
   },
   {
     category: 'Formal',
     greetings: [
-      'Wishing you a joyous Christmas and a prosperous New Year!',
-      'May the spirit of Christmas bring you peace and happiness!',
-      'Sending you warm wishes for a wonderful Christmas season!',
-      'May your holiday season be filled with joy and celebration!',
+      'Wishing you a prosperous and successful New Year 2026!',
+      'May the New Year bring you peace, happiness, and great achievements!',
+      'Sending you warm wishes for a wonderful and successful year ahead!',
+      'May your New Year be filled with joy, success, and celebration!',
     ],
   },
 ]
@@ -59,8 +59,8 @@ export default function GreetingGenerator() {
 
   const handleCopy = () => {
     const fullGreeting = customName 
-      ? `Dear ${customName},\n\n${selectedGreeting}\n\nMerry Christmas!`
-      : `${selectedGreeting}\n\nMerry Christmas!`
+      ? `Dear ${customName},\n\n${selectedGreeting}\n\nHappy New Year 2026!`
+      : `${selectedGreeting}\n\nHappy New Year 2026!`
     
     navigator.clipboard.writeText(fullGreeting)
     alert('Greeting copied to clipboard!')
@@ -76,19 +76,19 @@ export default function GreetingGenerator() {
         <div className="flex items-center justify-center gap-3 mb-4">
           <AccentIcons type="star" size="md" />
           <h2 className="text-4xl md:text-6xl font-playfair font-bold text-secondary-green">
-            Greeting Generator
+            New Year Greeting Generator
           </h2>
           <AccentIcons type="star" size="md" />
         </div>
         <p className="text-lg md:text-xl text-secondary-green/70 font-inter">
-          Create the perfect Christmas greeting
+          Create the perfect New Year greeting
         </p>
       </div>
 
-      <div className="bg-white rounded-2xl shadow-soft-lg p-8 md:p-12 border border-secondary-green/10 relative">
+      <div className="bg-white rounded-2xl shadow-soft-lg p-8 md:p-12 border-4 border-t-primary-red border-r-primary-red border-b-primary-red border-l-primary-red relative">
         {/* Subtle decorative element */}
         <div className="absolute top-6 right-6 opacity-20">
-          <AccentIcons type="bell" size="md" />
+          <AccentIcons type="champagne" size="md" />
         </div>
         <div className="space-y-8">
           <div>
@@ -99,7 +99,7 @@ export default function GreetingGenerator() {
               type="text"
               value={customName}
               onChange={(e) => setCustomName(e.target.value)}
-              className="w-full px-4 py-3 rounded-lg bg-snow-white border-2 border-secondary-green/20 text-secondary-green placeholder-secondary-green/40 focus:outline-none focus:border-primary-red focus:ring-2 focus:ring-primary-red/20 transition-all font-inter"
+              className="w-full px-4 py-3 rounded-lg bg-snow-white border-2 border-l-primary-red border-r-primary-red text-secondary-green placeholder-secondary-green/40 focus:outline-none focus:border-l-primary-red focus:border-r-primary-red focus:ring-2 focus:ring-primary-red/20 transition-all font-inter"
               placeholder="Enter name (e.g., John, Family, Friends)"
             />
           </div>
@@ -118,8 +118,8 @@ export default function GreetingGenerator() {
                   }}
                   className={`px-4 py-3 rounded-lg font-inter font-semibold transition-all duration-300 ${
                     selectedCategory === category.category
-                      ? 'bg-primary-red text-white shadow-soft'
-                      : 'bg-snow-white text-secondary-green border-2 border-secondary-green/20 hover:border-secondary-green/40 hover-lift'
+                      ? 'bg-primary-red text-white shadow-soft border-2 border-primary-red'
+                      : 'bg-snow-white text-secondary-green border-2 border-l-primary-red border-r-primary-red hover:border-l-primary-red hover:border-r-primary-red hover-lift'
                   }`}
                 >
                   {category.category}
@@ -136,7 +136,7 @@ export default function GreetingGenerator() {
           </button>
 
           {showPreview && selectedGreeting && (
-            <div className="mt-8 bg-secondary-green/5 rounded-xl p-8 border border-secondary-green/10 fade-in">
+            <div className="mt-8 bg-secondary-green/5 rounded-xl p-8 border border-primary-red/10 fade-in">
               <div className="text-center">
                 <div className="flex justify-center mb-6">
                   <Image 
