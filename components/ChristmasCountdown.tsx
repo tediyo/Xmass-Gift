@@ -42,7 +42,7 @@ export default function ChristmasCountdown() {
   }, [])
 
   const TimeBox = ({ value, label }: { value: number; label: string }) => (
-    <div className="flex flex-col items-center justify-center bg-white rounded-xl shadow-soft p-6 md:p-8 border border-secondary-green/10 hover-lift transition-all duration-300">
+    <div className="flex flex-col items-center justify-center bg-white rounded-xl shadow-soft p-6 md:p-8 border border-primary-red/10 hover-lift transition-all duration-300">
       <div className="text-5xl md:text-7xl font-playfair font-bold text-primary-red mb-2">
         {String(value).padStart(2, '0')}
       </div>
@@ -56,11 +56,11 @@ export default function ChristmasCountdown() {
     <div className="w-full fade-in">
       <div className="text-center mb-12">
         <div className="flex items-center justify-center gap-3 mb-4">
-          <AccentIcons type="bell" size="md" />
+          <AccentIcons type="star" size="md" />
           <h2 className="text-4xl md:text-6xl font-playfair font-bold text-secondary-green">
             Countdown to Christmas
           </h2>
-          <AccentIcons type="bell" size="md" />
+          <AccentIcons type="star" size="md" />
         </div>
         <p className="text-lg md:text-xl text-secondary-green/70 font-inter">
           Time until the holidays arrive
