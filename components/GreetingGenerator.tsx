@@ -72,43 +72,43 @@ export default function GreetingGenerator() {
 
   return (
     <div className="w-full max-w-3xl mx-auto fade-in">
-      <div className="text-center mb-10">
-        <div className="flex items-center justify-center gap-3 mb-4">
+      <div className="text-center mb-6 sm:mb-10">
+        <div className="flex items-center justify-center gap-2 sm:gap-3 mb-3 sm:mb-4 flex-wrap">
           <AccentIcons type="star" size="md" />
-          <h2 className="text-4xl md:text-6xl font-playfair font-bold text-secondary-green">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-playfair font-bold text-secondary-green px-2">
             New Year Greeting Generator
           </h2>
           <AccentIcons type="star" size="md" />
         </div>
-        <p className="text-lg md:text-xl text-secondary-green/70 font-inter">
+        <p className="text-base sm:text-lg md:text-xl text-secondary-green/70 font-inter px-4">
           Create the perfect New Year greeting
         </p>
       </div>
 
-      <div className="bg-white rounded-2xl shadow-soft-lg p-8 md:p-12 border-4 border-t-primary-red border-r-primary-red border-b-primary-red border-l-primary-red relative">
+      <div className="bg-white rounded-xl sm:rounded-2xl shadow-soft-lg p-4 sm:p-6 md:p-8 lg:p-12 border-4 border-t-primary-red border-r-primary-red border-b-primary-red border-l-primary-red relative">
         {/* Subtle decorative element */}
-        <div className="absolute top-6 right-6 opacity-20">
+        <div className="absolute top-4 right-4 sm:top-6 sm:right-6 opacity-20 hidden sm:block">
           <AccentIcons type="champagne" size="md" />
         </div>
-        <div className="space-y-8">
+        <div className="space-y-6 sm:space-y-8">
           <div>
-            <label className="block text-secondary-green text-sm font-inter font-semibold mb-3 uppercase tracking-wide">
+            <label className="block text-secondary-green text-sm font-inter font-semibold mb-2 sm:mb-3 uppercase tracking-wide">
               Recipient Name (Optional)
             </label>
             <input
               type="text"
               value={customName}
               onChange={(e) => setCustomName(e.target.value)}
-              className="w-full px-4 py-3 rounded-lg bg-snow-white border-2 border-l-primary-red border-r-primary-red text-secondary-green placeholder-secondary-green/40 focus:outline-none focus:border-l-primary-red focus:border-r-primary-red focus:ring-2 focus:ring-primary-red/20 transition-all font-inter"
+              className="w-full min-h-[44px] px-4 py-3 rounded-lg bg-snow-white border-2 border-l-primary-red border-r-primary-red text-base text-secondary-green placeholder-secondary-green/40 focus:outline-none focus:border-l-primary-red focus:border-r-primary-red focus:ring-2 focus:ring-primary-red/20 transition-all font-inter"
               placeholder="Enter name (e.g., John, Family, Friends)"
             />
           </div>
 
           <div>
-            <label className="block text-secondary-green text-sm font-inter font-semibold mb-3 uppercase tracking-wide">
+            <label className="block text-secondary-green text-sm font-inter font-semibold mb-2 sm:mb-3 uppercase tracking-wide">
               Choose Greeting Style
             </label>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-2 sm:gap-3">
               {greetingTemplates.map((category) => (
                 <button
                   key={category.category}
@@ -116,10 +116,10 @@ export default function GreetingGenerator() {
                     setSelectedCategory(category.category)
                     setShowPreview(false)
                   }}
-                  className={`px-4 py-3 rounded-lg font-inter font-semibold transition-all duration-300 ${
+                  className={`min-h-[44px] px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg font-inter font-semibold text-sm sm:text-base transition-all duration-300 touch-manipulation ${
                     selectedCategory === category.category
                       ? 'bg-primary-red text-white shadow-soft border-2 border-primary-red'
-                      : 'bg-snow-white text-secondary-green border-2 border-l-primary-red border-r-primary-red hover:border-l-primary-red hover:border-r-primary-red hover-lift'
+                      : 'bg-snow-white text-secondary-green border-2 border-l-primary-red border-r-primary-red active:bg-primary-red/10 hover-lift'
                   }`}
                 >
                   {category.category}
@@ -130,30 +130,30 @@ export default function GreetingGenerator() {
 
           <button
             onClick={handleGenerate}
-            className="w-full py-4 bg-primary-red text-white text-lg font-inter font-semibold rounded-lg shadow-soft hover-lift transition-all duration-300"
+            className="w-full min-h-[44px] py-4 bg-primary-red text-white text-base sm:text-lg font-inter font-semibold rounded-lg shadow-soft active:bg-primary-red/90 transition-all duration-300 touch-manipulation hover-lift"
           >
             Generate Greeting
           </button>
 
           {showPreview && selectedGreeting && (
-            <div className="mt-8 bg-secondary-green/5 rounded-xl p-8 border border-primary-red/10 fade-in">
+            <div className="mt-6 sm:mt-8 bg-secondary-green/5 rounded-xl p-4 sm:p-6 md:p-8 border border-primary-red/10 fade-in">
               <div className="text-center">
-                <div className="flex justify-center mb-6">
+                <div className="flex justify-center mb-4 sm:mb-6">
                   <Image 
                     src="/twoW.jpg" 
                     alt="Santa" 
                     width={100}
                     height={100}
-                    className="w-20 h-20 md:w-24 md:h-24 rounded-full border-2 border-accent-gold/30 shadow-soft object-cover"
+                    className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-full border-2 border-accent-gold/30 shadow-soft object-cover"
                     unoptimized
                   />
                 </div>
-                <div className="text-xl md:text-2xl text-secondary-green font-inter leading-relaxed whitespace-pre-wrap mb-8">
+                <div className="text-base sm:text-lg md:text-xl lg:text-2xl text-secondary-green font-inter leading-relaxed whitespace-pre-wrap mb-6 sm:mb-8 px-2">
                   {finalGreeting}
                 </div>
                 <button
                   onClick={handleCopy}
-                  className="px-8 py-3 bg-accent-gold text-secondary-green font-inter font-semibold rounded-lg hover-lift transition-all duration-300 shadow-soft"
+                  className="min-h-[44px] w-full sm:w-auto px-6 sm:px-8 py-3 bg-accent-gold text-secondary-green font-inter font-semibold rounded-lg active:bg-accent-gold/90 transition-all duration-300 shadow-soft touch-manipulation hover-lift"
                 >
                   Copy Greeting
                 </button>
